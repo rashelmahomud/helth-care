@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, Search, Bell, X, HeartPulse, SearchAlert, BellDot } from "lucide-react";
+import { Menu, X, HeartPulse, SearchAlert, BellDot } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
