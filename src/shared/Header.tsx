@@ -30,6 +30,10 @@ const navItems = [
         name: "Contact",
         href: "/contact",
     },
+    {
+        name: "Login",
+        href: "/login",
+    },
 ];
 
 export default function Header() {
@@ -90,7 +94,7 @@ export default function Header() {
                         </button>
 
                         <Image
-                            src="/images/user.png"
+                            src="/images/doctor.png"
                             alt="User"
                             width={40}
                             height={40}
