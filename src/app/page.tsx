@@ -1,4 +1,5 @@
 import Banner from "../components/Banner"
+import WhyChooseUs from "../components/home/WhyChooseUs";
 import Services from "./services/Services";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <Banner />
       <Services />
+      <WhyChooseUs />
 
     </div>
   );

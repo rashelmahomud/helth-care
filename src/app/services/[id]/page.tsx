@@ -12,19 +12,19 @@ import {
 const services = {
     cardiology: {
         title: "Cardiology",
-        image: "/images/doctor.png",
+        image: "/images/doctor-02.png",
         description:
             "Our Cardiology Department provides comprehensive diagnosis, treatment, and prevention for heart and vascular diseases using advanced medical technology.",
     },
     neurology: {
         title: "Neurology",
-        image: "/images/doctor.png",
+        image: "/images/doctor-02.png",
         description:
             "Expert neurological care for disorders affecting the brain, spinal cord, and nervous system.",
     },
     pediatrics: {
         title: "Pediatrics",
-        image: "/images/doctor.png",
+        image: "/images/doctor-04.png",
         description:
             "Complete healthcare services for infants, children, and adolescents.",
     },
@@ -36,13 +36,13 @@ const services = {
     },
     emergency: {
         title: "Emergency Care",
-        image: "/images/doctor-03.png",
+        image: "/images/doctor.png",
         description:
             "24/7 emergency healthcare with rapid response and expert medical staff.",
     },
     "general-medicine": {
         title: "General Medicine",
-        image: "/images/doctor-4.png",
+        image: "/images/doctor-03.png",
         description:
             "Comprehensive healthcare for everyday illnesses, chronic disease management, and preventive care.",
     },
