@@ -30,19 +30,19 @@ const services = {
     },
     laboratory: {
         title: "Laboratory",
-        image: "/images/doctor.png",
+        image: "/images/doctor-02.png",
         description:
             "Modern diagnostic laboratory with accurate and reliable medical testing.",
     },
     emergency: {
         title: "Emergency Care",
-        image: "/images/doctor.png",
+        image: "/images/doctor-03.png",
         description:
             "24/7 emergency healthcare with rapid response and expert medical staff.",
     },
     "general-medicine": {
         title: "General Medicine",
-        image: "/images/doctor.png",
+        image: "/images/doctor-4.png",
         description:
             "Comprehensive healthcare for everyday illnesses, chronic disease management, and preventive care.",
     },
