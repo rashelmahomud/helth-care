@@ -1,5 +1,6 @@
 import Banner from "../components/Banner"
 import WhyChooseUs from "../components/home/WhyChooseUs";
+import DoctorPage from "./doctors/page";
 import Services from "./services/Services";
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
       <Banner />
       <Services />
       <WhyChooseUs />
-
+      <DoctorPage />
     </div>
   );
 }
