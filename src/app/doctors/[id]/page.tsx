@@ -366,7 +366,6 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
     const { id } = await params;
 
     const doctor = doctors.find((d) => d.id.toString() == id) ?? doctors[0];
-
     return (
         <main className="min-h-screen bg-[#F8FAFC] pb-24 text-slate-800">
             {/* Top Navigation bar */}
