@@ -114,7 +114,7 @@ const doctors: Doctor[] = [
 
         reviews: 986,
 
-        image: "/images/doctor-03.png",
+        image: "/images/doctor-02.png",
 
         hospital: "Neuro Care Institute",
 
@@ -206,7 +206,7 @@ const doctors: Doctor[] = [
 
         reviews: 1134,
 
-        image: "/images/doctor-02.png",
+        image: "/images/doctor-03.png",
 
         hospital: "Children's Medical Center",
 

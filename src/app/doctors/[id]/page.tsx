@@ -1,66 +1,56 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Star, CalendarDays, GraduationCap, Award, ArrowLeft } from "lucide-react";
+import {
+    Star,
+    CalendarDays,
+    GraduationCap,
+    Award,
+    ArrowLeft,
+    MapPin,
+    Phone,
+    Mail,
+    Clock,
+    Languages,
+    CheckCircle,
+    Building2,
+    Users,
+    ShieldCheck
+} from "lucide-react";
 import { Doctor } from "@/src/types/doctors";
 
+// Mock data array (kept as provided in your prompt)
 const doctors: Doctor[] = [
 
     {
 
         id: 1,
-
         name: "Dr. Sarah Johnson",
-
         specialty: "Cardiologist",
-
         experience: "12+ Years",
-
         rating: 4.9,
-
         reviews: 1248,
-
         image: "/images/doctor.png",
-
         hospital: "City Care Hospital",
-
         degree: "MBBS, MD (Cardiology)",
-
         patients: "15,000+",
-
         email: "sarah.johnson@healthcare.com",
-
         phone: "+1 (555) 123-4567",
-
         location: "New York, USA",
-
         consultationFee: "$80",
-
         languages: ["English", "Spanish"],
-
         availability: "Mon - Fri (9:00 AM - 5:00 PM)",
-
         about:
-
             "Dr. Sarah Johnson is a highly experienced cardiologist with over 12 years of clinical practice. She specializes in diagnosing and treating heart diseases using modern medical technologies. Her compassionate approach and patient-first philosophy have earned her the trust of thousands of patients.",
-
         education: [
-
             "MBBS - Harvard Medical School",
-
             "MD in Cardiology - Johns Hopkins University",
-
             "Fellowship in Interventional Cardiology",
-
         ],
 
         specializations: [
-
             "Heart Disease",
-
             "Hypertension",
-
             "Heart Failure",
-
             "ECG & Echocardiography",
 
             "Coronary Angiography",
@@ -109,7 +99,7 @@ const doctors: Doctor[] = [
 
         reviews: 986,
 
-        image: "/images/doctor-03.png",
+        image: "/images/doctor-02.png",
 
         hospital: "Neuro Care Institute",
 
@@ -201,7 +191,7 @@ const doctors: Doctor[] = [
 
         reviews: 1134,
 
-        image: "/images/doctor-02.png",
+        image: "/images/doctor-03.png",
 
         hospital: "Children's Medical Center",
 
@@ -371,110 +361,229 @@ const doctors: Doctor[] = [
 
 ];
 
+export default async function DoctorProfile({ params }: { params: Promise<{ id: string }>; }) {
 
-export default async function DoctorProfile({
-    params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
-    const { slug } = await params;
+    const { id } = await params;
 
-    const doctor = doctors.find((d) => d.id.toString() === slug) ?? doctors[0];
+    const doctor = doctors.find((d) => d.id.toString() == id) ?? doctors[0];
 
     return (
-        <main className="bg-slate-50">
-            <section className="bg-gradient-to-r from-cyan-600 to-sky-700 py-16">
-                <div className="mx-auto max-w-7xl px-6">
+        <main className="min-h-screen bg-[#F8FAFC] pb-24 text-slate-800">
+            {/* Top Navigation bar */}
+            <div className="bg-white border-b border-slate-200/80">
+                <div className="mx-auto max-w-7xl px-6 py-4">
                     <Link
                         href="/doctors"
-                        className="inline-flex items-center gap-2 text-cyan-100 hover:text-white"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-cyan-600 transition"
                     >
-                        <ArrowLeft size={18} />
-                        Back to Doctors
+                        <ArrowLeft size={16} />
+                        Back to Doctors List
                     </Link>
+                </div>
+            </div>
 
-                    <div className="mt-10 grid items-center gap-12 lg:grid-cols-2">
-                        <div className="relative h-[500px] overflow-hidden rounded-3xl bg-white">
-                            <Image
-                                src={doctor.image}
-                                alt={doctor.name}
-                                fill
-                                className="object-cover"
-                            />
+            {/* Main Profile Header Card */}
+            <div className="mx-auto max-w-7xl px-6 pt-8">
+                <div className="rounded-3xl bg-white border border-slate-200/80 shadow-sm p-8 lg:p-10">
+                    <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+
+                        {/* Doctor Photo */}
+                        <div className="lg:col-span-3 flex justify-center">
+                            <div className="relative h-64 w-64 lg:h-72 lg:w-72 overflow-hidden rounded-2xl bg-slate-100 border border-slate-200 shadow-inner">
+                                <Image
+                                    src={doctor.image}
+                                    alt={doctor.name}
+                                    fill
+                                    className="object-cover object-top"
+                                />
+                            </div>
                         </div>
 
-                        <div>
-                            <span className="rounded-full bg-white/20 px-4 py-2 text-white">
-                                {doctor.specialty}
-                            </span>
+                        {/* Doctor Details */}
+                        <div className="lg:col-span-6 space-y-4">
+                            <div className="flex flex-wrap items-center gap-3">
+                                <span className="rounded-md bg-cyan-50 px-3 py-1 text-xs font-bold text-cyan-700 uppercase tracking-wider">
+                                    {doctor.specialty}
+                                </span>
+                                <span className="flex items-center gap-1 text-xs font-medium text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md">
+                                    <ShieldCheck size={14} /> Verified Practitioner
+                                </span>
+                            </div>
 
-                            <h1 className="mt-6 text-5xl font-bold text-white">
+                            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
                                 {doctor.name}
                             </h1>
 
-                            <div className="mt-6 flex flex-wrap gap-6 text-cyan-100">
-                                <div className="flex items-center gap-2">
-                                    <Star className="fill-yellow-400 text-yellow-400" size={18} />
-                                    {doctor.rating}
-                                </div>
+                            <p className="text-sm font-medium text-slate-500">
+                                {doctor.degree} • <span className="text-slate-700">{doctor.hospital}</span>
+                            </p>
 
-                                <div className="flex items-center gap-2">
-                                    <CalendarDays size={18} />
-                                    {doctor.experience}
+                            <div className="flex flex-wrap items-center gap-6 pt-2 text-sm text-slate-600">
+                                <div className="flex items-center gap-1.5 font-semibold text-slate-900">
+                                    <Star className="fill-amber-400 text-amber-400" size={16} />
+                                    <span>{doctor.rating}</span>
+                                    <span className="text-slate-400 font-normal">({doctor.reviews} reviews)</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <MapPin size={16} className="text-slate-400" />
+                                    <span>{doctor.location}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <CalendarDays size={16} className="text-slate-400" />
+                                    <span>{doctor.experience} Exp.</span>
                                 </div>
                             </div>
 
-                            <p className="mt-8 leading-8 text-cyan-50">
-                                {doctor.about}
-                            </p>
+                            <div className="flex flex-wrap gap-3 pt-2 text-xs text-slate-600 border-t border-slate-100 mt-4">
+                                <span className="flex items-center gap-1 bg-slate-100 px-3 py-1.5 rounded-lg">
+                                    <Languages size={14} className="text-slate-500" /> {doctor.languages.join(", ")}
+                                </span>
+                                <span className="flex items-center gap-1 bg-slate-100 px-3 py-1.5 rounded-lg">
+                                    <Mail size={14} className="text-slate-500" /> {doctor.email}
+                                </span>
+                            </div>
+                        </div>
 
-                            <div className="mt-10 flex gap-4">
+                        {/* Action Box / Consultation Fee */}
+                        <div className="lg:col-span-3 flex flex-col justify-between rounded-2xl bg-slate-50 border border-slate-200/60 p-6 text-center">
+                            <div>
+                                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Consultation Fee</span>
+                                <div className="text-3xl font-extrabold text-slate-900 mt-1">{doctor.consultationFee}</div>
+                                <span className="text-xs text-emerald-600 font-medium">No extra booking charges</span>
+                            </div>
+
+                            <div className="mt-6 space-y-2">
                                 <Link
                                     href="/appointment"
-                                    className="rounded-xl bg-white px-7 py-4 font-semibold text-cyan-700 hover:bg-slate-100"
+                                    className="block w-full rounded-xl bg-cyan-600 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-cyan-700 transition"
                                 >
                                     Book Appointment
                                 </Link>
-
                                 <Link
                                     href="/contact"
-                                    className="rounded-xl border border-white px-7 py-4 font-semibold text-white hover:bg-white hover:text-cyan-700"
+                                    className="block w-full rounded-xl bg-white border border-slate-300 py-2.5 text-center text-sm font-semibold text-slate-700 hover:bg-slate-100 transition"
                                 >
-                                    Contact
+                                    Contact Doctor
                                 </Link>
                             </div>
                         </div>
+
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section className="mx-auto max-w-7xl px-6 py-20">
-                <div className="grid gap-8 md:grid-cols-3">
-                    <div className="rounded-3xl bg-white p-8 shadow">
-                        <GraduationCap className="mb-4 text-cyan-600" />
-                        <h3 className="text-xl font-bold">Education</h3>
-                        <p className="mt-3 text-slate-600">
-                            {doctor.education}
-                        </p>
+            {/* Grid Layout for Content & Schedule */}
+            <div className="mx-auto max-w-7xl px-6 mt-8">
+                <div className="grid gap-8 lg:grid-cols-12">
+
+                    {/* Left Column: About, Specializations, Education */}
+                    <div className="lg:col-span-8 space-y-8">
+
+                        {/* About Section */}
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
+                            <h3 className="text-lg font-bold text-slate-900 mb-3">About Dr. Johnson</h3>
+                            <p className="text-slate-600 leading-relaxed text-sm lg:text-base">
+                                {doctor.about}
+                            </p>
+                        </div>
+
+                        {/* Specializations */}
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
+                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <Award className="text-cyan-600" size={20} />
+                                Clinical Specializations
+                            </h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                {doctor.specializations.map((spec, i) => (
+                                    <div key={i} className="flex items-center gap-2 bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-xs font-semibold text-slate-700">
+                                        <CheckCircle size={14} className="text-cyan-600 shrink-0" />
+                                        <span>{spec}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Education & Training */}
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
+                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <GraduationCap className="text-cyan-600" size={20} />
+                                Education & Background
+                            </h3>
+                            <div className="space-y-3">
+                                {doctor.education.map((edu, i) => (
+                                    <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 text-sm font-medium text-slate-700">
+                                        <div className="h-2 w-2 rounded-full bg-cyan-600" />
+                                        <span>{edu}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Achievements */}
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
+                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <Award className="text-cyan-600" size={20} />
+                                Awards & Memberships
+                            </h3>
+                            <div className="space-y-3">
+                                {doctor.achievements.map((item, i) => (
+                                    <div key={i} className="flex items-center gap-3 text-sm font-medium text-slate-700 border-b border-slate-100 pb-3 last:border-0 last:pb-0">
+                                        <span className="h-6 w-6 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs">★</span>
+                                        <span>{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div className="rounded-3xl bg-white p-8 shadow">
-                        <Award className="mb-4 text-cyan-600" />
-                        <h3 className="text-xl font-bold">Hospital</h3>
-                        <p className="mt-3 text-slate-600">
-                            {doctor.hospital}
-                        </p>
+                    {/* Right Column: Schedule Card & Quick Metrics */}
+                    <div className="lg:col-span-4 space-y-6">
+
+                        {/* Weekly Schedule */}
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-6 shadow-sm">
+                            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                                <h3 className="font-bold text-slate-900 flex items-center gap-2">
+                                    <Clock size={18} className="text-cyan-600" />
+                                    Availability Schedule
+                                </h3>
+                            </div>
+
+                            <div className="space-y-2.5">
+                                {doctor.schedule.map((item, i) => (
+                                    <div key={i} className="flex items-center justify-between text-xs py-2 border-b border-slate-50 last:border-0">
+                                        <span className="font-semibold text-slate-600">{item.day}</span>
+                                        <span className="font-medium text-slate-900">{item.time}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Quick Stats Block */}
+                        <div className="rounded-3xl bg-cyan-900 text-white p-6 shadow-sm">
+                            <h4 className="font-bold text-base mb-4 flex items-center gap-2">
+                                <Users size={18} className="text-cyan-400" /> Clinic Highlights
+                            </h4>
+                            <div className="space-y-4 text-sm text-cyan-100">
+                                <div className="flex justify-between items-center border-b border-cyan-800/60 pb-2">
+                                    <span>Total Patients</span>
+                                    <span className="font-bold text-white">{doctor.patients}</span>
+                                </div>
+                                <div className="flex justify-between items-center border-b border-cyan-800/60 pb-2">
+                                    <span>Primary Hospital</span>
+                                    <span className="font-bold text-white">{doctor.hospital}</span>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <span>Direct Line</span>
+                                    <span className="font-bold text-white">{doctor.phone}</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div className="rounded-3xl bg-white p-8 shadow">
-                        <Star className="mb-4 text-cyan-600" />
-                        <h3 className="text-xl font-bold">Patients</h3>
-                        <p className="mt-3 text-slate-600">
-                            {doctor.patients}
-                        </p>
-                    </div>
                 </div>
-            </section>
+            </div>
         </main>
     );
 }
