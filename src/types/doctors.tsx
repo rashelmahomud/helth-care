@@ -26,3 +26,5 @@ export interface Doctor {
     achievements: string[];
     schedule: DoctorSchedule[];
 }
+
+
