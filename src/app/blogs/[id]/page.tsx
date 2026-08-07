@@ -15,7 +15,7 @@ import {
 const blogs = {
     "healthy-heart-tips": {
         title: "10 Tips for Maintaining a Healthy Heart",
-        image: "/images/blog/blog-1.jpg",
+        image: "/images/doctor.png",
         category: "Cardiology",
         author: "Dr. Sarah Johnson",
         date: "15 July 2026",
