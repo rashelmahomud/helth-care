@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
     User,
     Mail,
@@ -11,10 +13,78 @@ import {
     EyeOff,
     ArrowRight,
 } from "lucide-react";
+import useAuth from "../hooks/useAuth";
 
 export default function RegisterForm() {
+    const { register } = useAuth();
+    const router = useRouter();
+
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    const handleRegister = async (
+        e: FormEvent<HTMLFormElement>
+    ) => {
+        e.preventDefault();
+
+        setError("");
+        setSuccess("");
+
+        const form = e.currentTarget;
+
+        const firstName = (
+            form.elements.namedItem("firstName") as HTMLInputElement
+        ).value;
+
+        const lastName = (
+            form.elements.namedItem("lastName") as HTMLInputElement
+        ).value;
+
+        const email = (
+            form.elements.namedItem("email") as HTMLInputElement
+        ).value;
+
+        const phone = (
+            form.elements.namedItem("phone") as HTMLInputElement
+        ).value;
+
+        const password = (
+            form.elements.namedItem("password") as HTMLInputElement
+        ).value;
+
+        const confirmPassword = (
+            form.elements.namedItem("confirmPassword") as HTMLInputElement
+        ).value;
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        try {
+            const result = await register(email, password);
+
+            // console.log(result.user);
+            // console.log(firstName, lastName, phone);
+
+            setSuccess("Registration successful!");
+
+            form.reset();
+
+            setTimeout(() => {
+                router.push("/");
+            }, 1500);
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("Registration failed.");
+            }
+        }
+    };
 
     return (
         <div className="w-full max-w-lg">
@@ -25,12 +95,15 @@ export default function RegisterForm() {
                 </h1>
 
                 <p className="mt-3 text-slate-500">
-                    Create your healthcare account to book appointments and manage your
-                    medical records.
+                    Create your healthcare account to book appointments
+                    and manage your medical records.
                 </p>
             </div>
 
-            <form className="space-y-6">
+            <form
+                onSubmit={handleRegister}
+                className="space-y-6"
+            >
                 {/* Name */}
                 <div className="grid gap-5 md:grid-cols-2">
                     <div>
@@ -42,8 +115,10 @@ export default function RegisterForm() {
                             <User size={18} className="text-slate-400" />
 
                             <input
+                                name="firstName"
                                 type="text"
                                 placeholder="John"
+                                required
                                 className="w-full bg-transparent px-3 py-4 outline-none"
                             />
                         </div>
@@ -58,8 +133,10 @@ export default function RegisterForm() {
                             <User size={18} className="text-slate-400" />
 
                             <input
+                                name="lastName"
                                 type="text"
                                 placeholder="Smith"
+                                required
                                 className="w-full bg-transparent px-3 py-4 outline-none"
                             />
                         </div>
@@ -76,8 +153,10 @@ export default function RegisterForm() {
                         <Mail size={18} className="text-slate-400" />
 
                         <input
+                            name="email"
                             type="email"
                             placeholder="john@example.com"
+                            required
                             className="w-full bg-transparent px-3 py-4 outline-none"
                         />
                     </div>
@@ -93,6 +172,7 @@ export default function RegisterForm() {
                         <Phone size={18} className="text-slate-400" />
 
                         <input
+                            name="phone"
                             type="tel"
                             placeholder="+880 123456789"
                             className="w-full bg-transparent px-3 py-4 outline-none"
@@ -110,14 +190,18 @@ export default function RegisterForm() {
                         <Lock size={18} className="text-slate-400" />
 
                         <input
+                            name="password"
                             type={showPassword ? "text" : "password"}
                             placeholder="Create password"
+                            required
                             className="w-full bg-transparent px-3 py-4 outline-none"
                         />
 
                         <button
                             type="button"
-                            onClick={() => setShowPassword(!showPassword)}
+                            onClick={() =>
+                                setShowPassword(!showPassword)
+                            }
                         >
                             {showPassword ? (
                                 <EyeOff size={20} />
@@ -125,17 +209,6 @@ export default function RegisterForm() {
                                 <Eye size={20} />
                             )}
                         </button>
-                    </div>
-
-                    {/* Password Strength */}
-                    <div className="mt-3">
-                        <div className="h-2 overflow-hidden rounded-full bg-slate-200">
-                            <div className="h-full w-2/3 rounded-full bg-green-500"></div>
-                        </div>
-
-                        <p className="mt-2 text-sm text-green-600">
-                            Strong Password
-                        </p>
                     </div>
                 </div>
 
@@ -149,14 +222,18 @@ export default function RegisterForm() {
                         <Lock size={18} className="text-slate-400" />
 
                         <input
+                            name="confirmPassword"
                             type={showConfirm ? "text" : "password"}
                             placeholder="Confirm password"
+                            required
                             className="w-full bg-transparent px-3 py-4 outline-none"
                         />
 
                         <button
                             type="button"
-                            onClick={() => setShowConfirm(!showConfirm)}
+                            onClick={() =>
+                                setShowConfirm(!showConfirm)
+                            }
                         >
                             {showConfirm ? (
                                 <EyeOff size={20} />
@@ -167,11 +244,26 @@ export default function RegisterForm() {
                     </div>
                 </div>
 
+                {/* Error */}
+                {error && (
+                    <div className="rounded-xl bg-red-50 p-4 text-red-600">
+                        {error}
+                    </div>
+                )}
+
+                {/* Success */}
+                {success && (
+                    <div className="rounded-xl bg-green-50 p-4 text-green-600">
+                        {success}
+                    </div>
+                )}
+
                 {/* Terms */}
                 <label className="flex items-start gap-3 text-sm text-slate-600">
                     <input
+                        required
                         type="checkbox"
-                        className="mt-1 h-4 w-4 accent-cyan-600"
+                        className="mt-1 accent-cyan-600"
                     />
 
                     <span>
@@ -192,12 +284,12 @@ export default function RegisterForm() {
                     </span>
                 </label>
 
-                {/* Register */}
+                {/* Register Button */}
                 <button
+                    type="submit"
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-600 py-4 font-semibold text-white transition hover:bg-cyan-700"
                 >
                     Create Account
-
                     <ArrowRight size={18} />
                 </button>
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, HeartPulse, SearchAlert, BellDot } from "lucide-react";
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const navItems = [
     {
@@ -33,11 +34,14 @@ const navItems = [
     {
         name: "Login",
         href: "/login",
+
     },
 ];
 
 export default function Header() {
     const [open, setOpen] = useState(false);
+    const { user } = useAuth();
+
 
     return (
         <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-100">
@@ -93,13 +97,16 @@ export default function Header() {
                             <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500" />
                         </button>
 
-                        <Image
-                            src="/images/doctor.png"
-                            alt="User"
-                            width={40}
-                            height={40}
-                            className="rounded-full border"
-                        />
+                        {
+                            user?.email ? <Image
+                                src="/images/doctor.png"
+                                alt="User"
+                                width={40}
+                                height={40}
+                                className="rounded-full border"
+                            /> : ""
+                        }
+
 
                         <button className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 text-white font-semibold transition hover:scale-105">
                             Book Now
