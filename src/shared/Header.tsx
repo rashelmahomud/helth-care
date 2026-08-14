@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Menu, X, HeartPulse, SearchAlert, BellDot } from "lucide-react";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 const navItems = [
     {
@@ -31,16 +32,24 @@ const navItems = [
         name: "Contact",
         href: "/contact",
     },
-    {
-        name: "Login",
-        href: "/login",
 
-    },
 ];
 
 export default function Header() {
     const [open, setOpen] = useState(false);
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
+    const router = useRouter();
+
+
+    const handelLogOut = async () => {
+        try {
+            await logout();
+            router.push('/login')
+
+        } catch (error) {
+            console.error('logOut faild', error)
+        }
+    }
 
 
     return (
@@ -82,6 +91,25 @@ export default function Header() {
                                 {item.name}
                             </Link>
                         ))}
+
+                        {
+                            user ? <Link
+                                onClick={handelLogOut}
+                                href="/login"
+                                className="relative text-[15px] font-medium text-slate-600 transition hover:text-cyan-600"
+                            >
+                                LogOut
+                            </Link> : <Link
+                                onClick={() => router.push('/login')}
+                                href="/login"
+                                className="relative text-[15px] font-medium text-slate-600 transition hover:text-cyan-600"
+                            >
+                                Login
+                            </Link>
+                        }
+
+
+
 
                     </nav>
 

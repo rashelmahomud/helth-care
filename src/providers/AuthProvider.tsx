@@ -1,9 +1,10 @@
 "use client"
 
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, User, UserCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User, UserCredential } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 
+// set code all type here
 interface AuthContextType {
     user: User | null;
     loading: boolean;
@@ -16,7 +17,14 @@ interface AuthContextType {
         email: string,
         password: string
     ) => Promise<UserCredential>
+
+
+    logout: () => Promise<void>
+
+
 }
+
+
 
 export const AuthContext =
     createContext<AuthContextType | null>(null);
@@ -44,6 +52,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         )
     }
 
+
+    const logout = async () => {
+
+        setLoading(true)
+        await signOut(auth)
+    }
+
+
+
+
+
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(
             auth,
@@ -59,7 +79,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         user,
         loading,
         register,
-        login
+        login,
+        logout
     };
 
     return (
