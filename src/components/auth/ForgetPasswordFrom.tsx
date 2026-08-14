@@ -7,13 +7,33 @@ import {
     Send,
     CheckCircle2,
 } from "lucide-react";
+import useAuth from "@/src/hooks/useAuth";
 
 export default function ForgotPasswordForm() {
     const [email, setEmail] = useState("");
     const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const { resetPassword } = useAuth();
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        try {
+
+            await resetPassword(email)
+            setMessage("passworld reset email has been send, check your email")
+            setEmail("")
+
+        } catch (error) {
+
+            console.error('here error have', error)
+
+            setError("could not sent email, check your email address")
+        } finally {
+            setLoading(false)
+        }
 
         // TODO:
         // Firebase sendPasswordResetEmail()

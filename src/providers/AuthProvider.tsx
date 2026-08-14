@@ -1,6 +1,6 @@
 "use client"
 
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User, UserCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, User, UserCredential } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 
@@ -22,6 +22,8 @@ interface AuthContextType {
     logout: () => Promise<void>
 
     googleLogin: () => Promise<void>
+
+    resetPassword: (email: string) => Promise<void>
 }
 
 
@@ -68,6 +70,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
 
+    const resetPassword = (email: string) => {
+        return sendPasswordResetEmail(auth, email)
+    }
 
 
 
@@ -89,7 +94,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         register,
         login,
         logout,
-        googleLogin
+        googleLogin,
+        resetPassword
     };
 
     return (
