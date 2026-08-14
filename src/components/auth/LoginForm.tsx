@@ -16,7 +16,7 @@ import useAuth from "@/src/hooks/useAuth";
 
 export default function LoginForm() {
     const router = useRouter();
-    const { login } = useAuth();
+    const { login, googleLogin } = useAuth();
 
     const [showPassword, setShowPassword] =
         useState(false);
@@ -73,6 +73,17 @@ export default function LoginForm() {
             setLoading(false);
         }
     };
+
+    const handelgoogleLogin = async () => {
+        try {
+            const result = await googleLogin()
+            router.push('/')
+            console.log(result)
+        } catch (error) {
+            console.error("google login Error", error)
+        }
+    }
+
 
     return (
         <div className="w-full max-w-md">
@@ -247,6 +258,7 @@ export default function LoginForm() {
 
                 {/* Google */}
                 <button
+                    onClick={handelgoogleLogin}
                     type="button"
                     className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 py-4 font-medium transition hover:bg-slate-50"
                 >
