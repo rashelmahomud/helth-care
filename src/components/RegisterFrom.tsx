@@ -67,7 +67,7 @@ export default function RegisterForm() {
         try {
             const result = await register(email, password);
 
-            // console.log(result.user);
+            console.log(result.user);
             // console.log(firstName, lastName, phone);
 
             setSuccess("Registration successful!");
@@ -75,7 +75,7 @@ export default function RegisterForm() {
             form.reset();
 
             setTimeout(() => {
-                router.push("/");
+                router.push("/verify-email");
             }, 1500);
         } catch (err) {
             if (err instanceof Error) {
