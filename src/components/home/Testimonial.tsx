@@ -6,7 +6,7 @@ const testimonials = [
         id: 1,
         name: "John Smith",
         role: "Heart Patient",
-        image: "/images/patient-1.jpg",
+        image: "/images/doctor-02.png",
         rating: 5,
         review:
             "The doctors were incredibly professional and caring. Booking an appointment was simple, and I received excellent treatment. Highly recommended!",
@@ -15,7 +15,7 @@ const testimonials = [
         id: 2,
         name: "Emma Williams",
         role: "Mother",
-        image: "/images/patient-2.jpg",
+        image: "/images/doctor-03.png",
         rating: 5,
         review:
             "The pediatric department took wonderful care of my daughter. The doctors explained everything clearly and made us feel comfortable.",
@@ -24,7 +24,7 @@ const testimonials = [
         id: 3,
         name: "Michael Johnson",
         role: "Businessman",
-        image: "/images/patient-3.jpg",
+        image: "/images/doctor-04.png",
         rating: 5,
         review:
             "Modern facilities, experienced specialists, and exceptional patient support. One of the best healthcare experiences I've ever had.",
@@ -101,7 +101,7 @@ const Testimonials = () => {
 
                             {/* Review */}
                             <p className="mt-6 leading-8 text-slate-600">
-                                "{item.review}"
+                                {item.review}
                             </p>
                         </div>
                     ))}
