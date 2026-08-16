@@ -39,6 +39,7 @@ export default function Header() {
     const [open, setOpen] = useState(false);
     const { user, logout } = useAuth();
     const router = useRouter();
+    console.log(user)
 
 
     const handelLogOut = async () => {
@@ -127,7 +128,7 @@ export default function Header() {
 
                         {
                             user?.email ? <Image
-                                src="/images/doctor.png"
+                                src={user?.photoURL || "/images/doctor.png"}
                                 alt="User"
                                 width={40}
                                 height={40}
@@ -171,6 +172,26 @@ export default function Header() {
                             {item.name}
                         </Link>
                     ))}
+
+                    <div className="text-center">
+
+
+                        {
+                            user ? <Link
+                                onClick={handelLogOut}
+                                href="/login"
+                                className="relative text-[15px] font-medium text-slate-600 transition hover:text-cyan-600"
+                            >
+                                LogOut
+                            </Link> : <Link
+                                onClick={() => router.push('/login')}
+                                href="/login"
+                                className="relative text-[15px] font-medium text-slate-600 transition hover:text-cyan-600"
+                            >
+                                Login
+                            </Link>
+                        }
+                    </div>
 
                     <div className="p-5">
                         <button className="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 font-semibold text-white">
