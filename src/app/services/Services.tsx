@@ -8,8 +8,9 @@ import {
     Ambulance,
     Microscope,
 } from "lucide-react";
+import { Service } from "@/src/types/services";
 
-const services = [
+const services: Service[] = [
     {
         id: 1,
         title: "General Medicine",

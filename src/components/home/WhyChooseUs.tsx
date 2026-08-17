@@ -9,8 +9,9 @@ import {
     Stethoscope,
     Users,
 } from "lucide-react";
+import { Service } from "@/src/types/services";
 
-const features = [
+const features: Service[] = [
     {
         id: 1,
         title: "Experienced Doctors",

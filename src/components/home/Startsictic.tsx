@@ -1,3 +1,4 @@
+import { Statistic } from "@/src/types/Statistics";
 import {
     Users,
     UserRoundCheck,
@@ -5,7 +6,7 @@ import {
     Award,
 } from "lucide-react";
 
-const statistics = [
+const statistics: Statistic[] = [
     {
         id: 1,
         title: "Happy Patients",
