@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, UserRound } from "lucide-react";
+import { BlogsType } from "@/src/types/blogs";
 
-const blogs = [
+const blogs: BlogsType[] = [
     {
         id: 1,
         title: "10 Tips for Maintaining a Healthy Heart",

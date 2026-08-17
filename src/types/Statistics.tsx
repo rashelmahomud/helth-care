@@ -1,6 +1,6 @@
 import { LucideIcon } from "lucide-react";
 
-export interface Statistic {
+export interface StatisticType {
     id: number,
     title: string,
     value: string,

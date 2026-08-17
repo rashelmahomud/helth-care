@@ -3,7 +3,7 @@ export interface DoctorSchedule {
     time: string;
 }
 
-export interface Doctor {
+export interface DoctorsType {
     id: number;
     name: string;
     specialty: string;

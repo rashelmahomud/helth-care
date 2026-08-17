@@ -8,8 +8,9 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { FaqsType } from "@/src/types/faqsType";
 
-const faqs = [
+const faqs: FaqsType[] = [
     {
         id: "item-1",
         question: "How do I book an appointment?",

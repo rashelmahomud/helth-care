@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Star, Quote } from "lucide-react";
-import { Testemonial } from "@/src/types/Testimonial";
+import { TestemonialType } from "@/src/types/Testimonial";
 
-const testimonials: Testemonial[] = [
+const testimonials: TestemonialType[] = [
     {
         id: 1,
         name: "John Smith",

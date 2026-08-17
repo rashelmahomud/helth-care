@@ -1,4 +1,4 @@
-export interface Testemonial {
+export interface TestemonialType {
     id: number,
     name: string,
     role: string,
