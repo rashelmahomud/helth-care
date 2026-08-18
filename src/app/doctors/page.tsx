@@ -6,8 +6,9 @@ import {
     Star,
     Stethoscope,
 } from "lucide-react";
+import { DoctorsType } from "@/src/types/doctors";
 
-const doctors = [
+const doctors: DoctorsType[] = [
 
     {
 

@@ -14,9 +14,10 @@ import {
     Users,
     ShieldCheck
 } from "lucide-react";
+import { DoctorsType } from "@/src/types/doctors";
 
 // Mock data array (kept as provided in your prompt)
-const doctors = [
+const doctors: DoctorsType[] = [
 
     {
 
