@@ -7,19 +7,17 @@ import {
     Award,
     ArrowLeft,
     MapPin,
-    Phone,
     Mail,
     Clock,
     Languages,
     CheckCircle,
-    Building2,
     Users,
     ShieldCheck
 } from "lucide-react";
-import { Doctor } from "@/src/types/doctors";
+import { DoctorsType } from "@/src/types/doctors";
 
 // Mock data array (kept as provided in your prompt)
-const doctors: Doctor[] = [
+const doctors: DoctorsType[] = [
 
     {
 
