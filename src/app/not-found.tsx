@@ -109,7 +109,7 @@ export default function NotFound() {
                         </Link>
 
                         <button
-                            onClick={() => window.history.back()}
+                            // onClick={() => window.history.back()}
                             className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-7 py-4 font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-slate-50 hover:shadow-md sm:w-auto"
                         >
                             <ArrowLeft size={18} />
