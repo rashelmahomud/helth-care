@@ -15,10 +15,13 @@ import {
     LogOut,
     CalendarDays,
     ChevronDown,
+    Moon,
+    Sun,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "../hooks/useAuth";
+import useTheme from "../hooks/useTheme";
 
 const navItems = [
     {
@@ -55,6 +58,7 @@ export default function Header() {
 
     const { user, logout } = useAuth();
     const router = useRouter();
+    const { theme, toggleTheme } = useTheme();
 
     // Close profile dropdown when clicking outside
     useEffect(() => {
@@ -113,7 +117,8 @@ export default function Header() {
         user?.photoURL || "/images/doctor.png";
 
     return (
-        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-xl">
+        // <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-xl">
+        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/90">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 {/* ================= HEADER ================= */}
@@ -174,6 +179,23 @@ export default function Header() {
                             <Bell size={20} />
 
                             <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
+                        </button>
+                        <button
+                            onClick={toggleTheme}
+                            className="rounded-full p-3 transition hover:bg-slate-100 dark:hover:bg-slate-800"
+                            aria-label="Toggle theme"
+                        >
+                            {theme === "light" ? (
+                                <Moon
+                                    size={20}
+                                    className="text-slate-700"
+                                />
+                            ) : (
+                                <Sun
+                                    size={20}
+                                    className="text-yellow-400"
+                                />
+                            )}
                         </button>
 
                         {/* User */}
