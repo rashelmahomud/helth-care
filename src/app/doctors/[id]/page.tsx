@@ -365,13 +365,13 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
 
     const doctor = doctors.find((d) => d.id.toString() == id) ?? doctors[0];
     return (
-        <main className="min-h-screen bg-[#F8FAFC] pb-24 text-slate-800">
+        <main className="min-h-screen bg-[#F8FAFC] pb-24 text-slate-800 dark:bg-slate-900">
             {/* Top Navigation bar */}
-            <div className="bg-white border-b border-slate-200/80">
+            <div className="bg-white dark:bg-slate-900 border-b border-slate-200/80 ">
                 <div className="mx-auto max-w-7xl px-6 py-4">
                     <Link
                         href="/doctors"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-cyan-600 transition"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600  hover:text-cyan-600 transition"
                     >
                         <ArrowLeft size={16} />
                         Back to Doctors List
@@ -380,8 +380,8 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
             </div>
 
             {/* Main Profile Header Card */}
-            <div className="mx-auto max-w-7xl px-6 pt-8">
-                <div className="rounded-3xl bg-white border border-slate-200/80 shadow-sm p-8 lg:p-10">
+            <div className="mx-auto max-w-7xl px-6 pt-8 ">
+                <div className="rounded-3xl bg-white border border-slate-200/80 shadow-sm p-8 lg:p-10 dark:bg-slate-900">
                     <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
 
                         {/* Doctor Photo */}
@@ -407,7 +407,7 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                                 </span>
                             </div>
 
-                            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
+                            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-300">
                                 {doctor.name}
                             </h1>
 
@@ -442,10 +442,10 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                         </div>
 
                         {/* Action Box / Consultation Fee */}
-                        <div className="lg:col-span-3 flex flex-col justify-between rounded-2xl bg-slate-50 border border-slate-200/60 p-6 text-center">
+                        <div className="lg:col-span-3 flex flex-col justify-between rounded-2xl bg-slate-50 border border-slate-200/60 p-6 text-center dark:bg-slate-900">
                             <div>
                                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Consultation Fee</span>
-                                <div className="text-3xl font-extrabold text-slate-900 mt-1">{doctor.consultationFee}</div>
+                                <div className="text-3xl font-extrabold text-slate-900 dark:bg-slate-300 mt-1">{doctor.consultationFee}</div>
                                 <span className="text-xs text-emerald-600 font-medium">No extra booking charges</span>
                             </div>
 
@@ -477,16 +477,16 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                     <div className="lg:col-span-8 space-y-8">
 
                         {/* About Section */}
-                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-3">About Dr. Johnson</h3>
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm dark:bg-slate-900">
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-300 mb-3">About Dr. Johnson</h3>
                             <p className="text-slate-600 leading-relaxed text-sm lg:text-base">
                                 {doctor.about}
                             </p>
                         </div>
 
                         {/* Specializations */}
-                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm dark:bg-slate-900">
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-300 mb-4 flex items-center gap-2">
                                 <Award className="text-cyan-600" size={20} />
                                 Clinical Specializations
                             </h3>
@@ -501,8 +501,8 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                         </div>
 
                         {/* Education & Training */}
-                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm dark:bg-slate-900">
+                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 dark:text-slate-300">
                                 <GraduationCap className="text-cyan-600" size={20} />
                                 Education & Background
                             </h3>
@@ -517,8 +517,8 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                         </div>
 
                         {/* Achievements */}
-                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-8 shadow-sm dark:bg-slate-900">
+                            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2 dark:text-slate-300">
                                 <Award className="text-cyan-600" size={20} />
                                 Awards & Memberships
                             </h3>
@@ -535,12 +535,12 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                     </div>
 
                     {/* Right Column: Schedule Card & Quick Metrics */}
-                    <div className="lg:col-span-4 space-y-6">
+                    <div className="lg:col-span-4 space-y-6 ">
 
                         {/* Weekly Schedule */}
-                        <div className="rounded-3xl bg-white border border-slate-200/80 p-6 shadow-sm">
+                        <div className="rounded-3xl bg-white border border-slate-200/80 p-6 shadow-sm dark:bg-slate-900">
                             <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-                                <h3 className="font-bold text-slate-900 flex items-center gap-2">
+                                <h3 className="font-bold text-slate-900 dark:text-slate-300 flex items-center gap-2">
                                     <Clock size={18} className="text-cyan-600" />
                                     Availability Schedule
                                 </h3>
@@ -549,8 +549,8 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                             <div className="space-y-2.5">
                                 {doctor.schedule.map((item, i) => (
                                     <div key={i} className="flex items-center justify-between text-xs py-2 border-b border-slate-50 last:border-0">
-                                        <span className="font-semibold text-slate-600">{item.day}</span>
-                                        <span className="font-medium text-slate-900">{item.time}</span>
+                                        <span className="font-semibold text-slate-600 dark:text-slate-300">{item.day}</span>
+                                        <span className="font-medium text-slate-900   dark:text-slate-300">{item.time}</span>
                                     </div>
                                 ))}
                             </div>

@@ -70,7 +70,7 @@ const Blogs = () => {
                             className="group overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
                         >
                             {/* Image */}
-                            <div className="relative h-64 overflow-hidden">
+                            <div className="relative h-64 overflow-hidden  ">
                                 <Image
                                     src={blog.image}
                                     alt={blog.title}
@@ -84,7 +84,7 @@ const Blogs = () => {
                             </div>
 
                             {/* Content */}
-                            <div className="p-8">
+                            <div className="p-8 dark:bg-slate-900">
                                 <div className="flex items-center gap-5 text-sm text-slate-500">
                                     <div className="flex items-center gap-2">
                                         <UserRound size={16} />
@@ -97,7 +97,7 @@ const Blogs = () => {
                                     </div>
                                 </div>
 
-                                <h3 className="mt-5 text-2xl font-bold text-slate-900 transition group-hover:text-cyan-600">
+                                <h3 className="mt-5 text-2xl font-bold text-slate-900 transition group-hover:text-gray-600 dark:text-slate-600">
                                     {blog.title}
                                 </h3>
 

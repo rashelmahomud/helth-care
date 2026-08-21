@@ -407,7 +407,7 @@ export default function Doctors() {
                     {doctors.map((doctor) => (
                         <div
                             key={doctor.id}
-                            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-900"
                         >
                             {/* Image */}
                             <div className="relative h-80 overflow-hidden">

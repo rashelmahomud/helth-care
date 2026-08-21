@@ -68,15 +68,15 @@ const Statistics = () => {
                         return (
                             <div
                                 key={item.id}
-                                className="group rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl"
+                                className="group rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl dark:bg-slate-900 "
                             >
                                 <div
-                                    className={`mx-auto flex h-20 w-20 items-center justify-center rounded-2xl ${item.color} transition group-hover:scale-110`}
+                                    className={`mx-auto flex h-20 w-20 items-center justify-center rounded-2xl ${item.color} transition group-hover:scale-110 dark:bg-slate-900`}
                                 >
                                     <Icon size={38} />
                                 </div>
 
-                                <h3 className="mt-8 text-5xl font-extrabold text-slate-900">
+                                <h3 className="mt-8 text-5xl font-extrabold text-slate-900 dark:text-slate-500 ">
                                     {item.value}
                                 </h3>
 
@@ -90,7 +90,7 @@ const Statistics = () => {
 
                 {/* Bottom Banner */}
                 <div className="mt-20 rounded-3xl bg-gradient-to-r from-cyan-600 to-sky-600 px-8 py-12 text-center">
-                    <h3 className="text-3xl font-bold text-white">
+                    <h3 className="text-3xl font-bold text-white ">
                         Your Health Is Our Highest Priority
                     </h3>
 

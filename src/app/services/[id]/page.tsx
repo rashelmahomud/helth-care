@@ -60,7 +60,7 @@ export default async function ServiceDetails({
         services["general-medicine"];
 
     return (
-        <main className="bg-slate-50">
+        <main className="bg-slate-50 dark:bg-slate-900">
             {/* Hero */}
             <section className="bg-gradient-to-r from-cyan-600 to-sky-700 py-20">
                 <div className="mx-auto max-w-7xl px-6">
@@ -87,7 +87,7 @@ export default async function ServiceDetails({
             </section>
 
             {/* About */}
-            <section className="mx-auto max-w-7xl px-6 py-20">
+            <section className="mx-auto max-w-7xl px-6 py-20 ">
                 <div className="grid gap-16 lg:grid-cols-2">
                     <div>
                         <Image
@@ -100,7 +100,7 @@ export default async function ServiceDetails({
                     </div>
 
                     <div>
-                        <span className="rounded-full bg-cyan-100 px-4 py-2 font-semibold text-cyan-700">
+                        <span className="rounded-full bg-cyan-100 px-4 py-2 font-semibold text-cyan-700 ">
                             About This Service
                         </span>
 
@@ -134,8 +134,8 @@ export default async function ServiceDetails({
             </section>
 
             {/* Features */}
-            <section className="bg-white py-20">
-                <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3">
+            <section className="bg-white py-20 dark:bg-slate-900">
+                <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3 ">
                     {[
                         {
                             title: "24/7 Service",
@@ -158,7 +158,7 @@ export default async function ServiceDetails({
                         return (
                             <div
                                 key={item.title}
-                                className="rounded-3xl border bg-slate-50 p-8 text-center transition hover:-translate-y-2 hover:shadow-xl"
+                                className="rounded-3xl border bg-slate-50 p-8 text-center transition hover:-translate-y-2 hover:shadow-xl dark:bg-slate-900"
                             >
                                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-100">
                                     <Icon className="text-cyan-600" />
@@ -178,12 +178,12 @@ export default async function ServiceDetails({
             </section>
 
             {/* Treatments */}
-            <section className="mx-auto max-w-7xl px-6 py-20">
+            <section className="mx-auto max-w-7xl px-6 py-20 ">
                 <h2 className="text-center text-4xl font-bold">
                     Treatments Included
                 </h2>
 
-                <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 ">
                     {[
                         "Medical Consultation",
                         "Diagnostic Testing",
@@ -194,7 +194,7 @@ export default async function ServiceDetails({
                     ].map((item) => (
                         <div
                             key={item}
-                            className="rounded-2xl border bg-white p-6 shadow-sm"
+                            className="rounded-2xl border bg-white p-6 shadow-sm dark:bg-slate-900"
                         >
                             <CheckCircle2 className="mb-4 text-cyan-600" />
 

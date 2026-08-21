@@ -86,7 +86,7 @@ const AppointmentCTA = () => {
                                 </p>
                             </div>
 
-                            <div className="rounded-3xl bg-white p-8 shadow-xl sm:col-span-2">
+                            <div className="rounded-3xl bg-white p-8 shadow-xl sm:col-span-2 dark:bg-slate-900">
                                 <div className="grid gap-6 md:grid-cols-3">
                                     <div className="text-center">
                                         <h3 className="text-4xl font-extrabold text-cyan-600">

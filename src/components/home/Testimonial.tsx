@@ -60,7 +60,7 @@ const Testimonials = () => {
                     {testimonials.map((item) => (
                         <div
                             key={item.id}
-                            className="group relative rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                            className="group relative rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-900"
                         >
                             {/* Quote */}
                             <div className="absolute right-8 top-8 rounded-full bg-cyan-100 p-3">
@@ -110,7 +110,7 @@ const Testimonials = () => {
 
                 {/* Bottom Banner */}
                 <div className="mt-20 rounded-3xl bg-gradient-to-r from-cyan-600 to-sky-600 px-8 py-14 text-center">
-                    <h3 className="text-3xl font-bold text-white">
+                    <h3 className="text-3xl font-bold text-white ">
                         More Than 25,000 Happy Patients
                     </h3>
 
