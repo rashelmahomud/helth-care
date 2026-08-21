@@ -8,12 +8,12 @@ import {
 
 const AppointmentCTA = () => {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-r from-cyan-600 via-sky-600 to-blue-700 py-24">
+        <section className="relative overflow-hidden bg-gradient-to-r from-cyan-600 via-sky-600 to-blue-700 py-24 ">
             {/* Background Decorations */}
-            <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-cyan-300/20 blur-3xl" />
+            <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl " />
+            <div className="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-cyan-300/20 blur-3xl " />
 
-            <div className="relative mx-auto max-w-7xl px-6">
+            <div className="relative mx-auto max-w-7xl px-6 dark:bg-slate-900">
                 <div className="overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 backdrop-blur-xl">
                     <div className="grid items-center gap-12 p-10 lg:grid-cols-2 lg:p-16">
                         {/* Left */}
@@ -57,7 +57,7 @@ const AppointmentCTA = () => {
 
                         {/* Right */}
                         <div className="grid gap-6 sm:grid-cols-2">
-                            <div className="rounded-3xl bg-white p-8 shadow-xl">
+                            <div className="rounded-3xl bg-white p-8 shadow-xl dark:bg-slate-900">
                                 <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-100">
                                     <CalendarDays className="text-cyan-600" size={32} />
                                 </div>
@@ -71,7 +71,7 @@ const AppointmentCTA = () => {
                                 </p>
                             </div>
 
-                            <div className="rounded-3xl bg-white p-8 shadow-xl">
+                            <div className="rounded-3xl bg-white p-8 shadow-xl dark:bg-slate-900">
                                 <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100">
                                     <ShieldCheck className="text-emerald-600" size={32} />
                                 </div>

@@ -9,7 +9,7 @@ const Banner = () => {
             <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-cyan-100 blur-3xl opacity-50" />
             <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-sky-100 blur-3xl opacity-50" />
 
-            <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-14 px-6 py-20 lg:flex-row lg:py-28">
+            <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-14 px-6 py-20 lg:flex-row lg:py-28 dark:bg-slate-900">
                 {/* Left */}
                 <div className="flex-1">
                     <span className="inline-flex items-center rounded-full bg-cyan-100 px-4 py-2 text-sm font-medium text-cyan-700">

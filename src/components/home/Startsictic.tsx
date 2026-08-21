@@ -39,7 +39,7 @@ const statistics: StatisticType[] = [
 
 const Statistics = () => {
     return (
-        <section className="bg-slate-50 py-24">
+        <section className="bg-slate-50 py-24 dark:bg-slate-900">
             <div className="mx-auto max-w-7xl px-6">
                 {/* Heading */}
                 <div className="mx-auto max-w-3xl text-center">

@@ -51,7 +51,7 @@ const faqs: FaqsType[] = [
 
 const FAQ = () => {
     return (
-        <section className="bg-slate-50 py-24">
+        <section className="bg-slate-50 py-24 dark:bg-slate-900">
             <div className="mx-auto max-w-7xl px-6">
                 <div className="grid items-center gap-16 lg:grid-cols-2">
                     {/* Left */}
@@ -72,7 +72,7 @@ const FAQ = () => {
                             healthcare services, insurance, and our medical specialists.
                         </p>
 
-                        <div className="mt-10 rounded-3xl bg-gradient-to-r from-cyan-600 to-sky-600 p-8 text-white">
+                        <div className="mt-10 rounded-3xl bg-gradient-to-r from-cyan-600 to-sky-600 p-8 text-white ">
                             <h3 className="text-2xl font-bold">
                                 Still Need Help?
                             </h3>
@@ -93,7 +93,7 @@ const FAQ = () => {
                     </div>
 
                     {/* Right */}
-                    <div className="rounded-3xl bg-white p-8 shadow-xl">
+                    <div className="rounded-3xl bg-white p-8 shadow-xl dark:bg-slate-900">
                         <Accordion className="w-full">
                             {faqs.map((faq) => (
                                 <AccordionItem key={faq.id} value={faq.id}>

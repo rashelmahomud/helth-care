@@ -57,7 +57,7 @@ const services: Service[] = [
 
 export default function Services() {
     return (
-        <section className="bg-slate-50 py-20">
+        <section className="bg-slate-50 py-20 dark:bg-slate-900">
             <div className="mx-auto max-w-7xl px-6">
                 {/* Section Header */}
                 <div className="mx-auto max-w-3xl text-center">
@@ -80,14 +80,14 @@ export default function Services() {
                 </div>
 
                 {/* Services Grid */}
-                <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 ">
                     {services.map((service) => {
                         const Icon = service.icon;
 
                         return (
                             <div
                                 key={service.id}
-                                className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-2xl"
+                                className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-2xl dark:bg-slate-900"
                             >
                                 {/* Icon */}
                                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-100 transition-all duration-300 group-hover:bg-cyan-600">
