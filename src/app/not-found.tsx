@@ -10,7 +10,7 @@ import {
 
 export default function NotFound() {
     return (
-        <main className="relative min-h-screen overflow-hidden bg-slate-50">
+        <main className="relative min-h-screen overflow-hidden bg-slate-50 dark:bg-slate-900">
 
             {/* Background Decorations */}
             <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-cyan-100/60 blur-3xl" />
