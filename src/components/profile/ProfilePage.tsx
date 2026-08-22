@@ -186,7 +186,7 @@ export default function ProfilePage() {
     };
 
     return (
-        <main className="min-h-screen bg-slate-50 py-10">
+        <main className="min-h-screen bg-slate-50 dark:bg-slate-900 py-10">
             <div className="mx-auto max-w-7xl px-5">
 
                 {/* Header */}
@@ -217,7 +217,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Patient Profile */}
-                <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 shadow-sm">
 
                     <div className="h-32 bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700" />
 
@@ -274,7 +274,7 @@ export default function ProfilePage() {
                             {!editing ? (
                                 <button
                                     onClick={handleEdit}
-                                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-5 py-3 font-semibold text-slate-700 transition hover:border-cyan-500 hover:bg-cyan-50 hover:text-cyan-700"
+                                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-5 py-3 font-semibold text-slate-700 dark:text-slate-500 transition hover:border-cyan-500 hover:bg-cyan-50 hover:text-cyan-700"
                                 >
                                     <Edit3 size={17} />
                                     Edit Profile
@@ -334,7 +334,7 @@ export default function ProfilePage() {
                                 return (
                                     <div
                                         key={item.label}
-                                        className="rounded-2xl bg-slate-50 p-4"
+                                        className="rounded-2xl bg-slate-50  p-4"
                                     >
                                         <div className="flex items-center gap-3">
                                             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-cyan-600 shadow-sm">
@@ -374,7 +374,7 @@ export default function ProfilePage() {
                 </section>
 
                 {/* Hospital Summary */}
-                <section className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <section className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 ">
 
                     <SummaryCard
                         icon={CalendarDays}
@@ -425,9 +425,9 @@ export default function ProfilePage() {
                     <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
 
                         {/* Cost List */}
-                        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white  shadow-sm">
 
-                            <div className="border-b border-slate-100 p-5">
+                            <div className="border-b border-slate-100 p-5 ">
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
                                         <Receipt size={21} />
@@ -445,7 +445,7 @@ export default function ProfilePage() {
                                 </div>
                             </div>
 
-                            <div className="divide-y divide-slate-100">
+                            <div className="divide-y divide-slate-100 dark:bg-slate-900">
 
                                 {costs.map((cost) => {
                                     const Icon = cost.icon;
@@ -462,7 +462,7 @@ export default function ProfilePage() {
                                                 </div>
 
                                                 <div className="min-w-0">
-                                                    <h4 className="font-semibold text-slate-800">
+                                                    <h4 className="font-semibold text-slate-800 dark:text-slate-500">
                                                         {cost.name}
                                                     </h4>
 
@@ -482,7 +482,7 @@ export default function ProfilePage() {
                             </div>
 
                             {/* Total */}
-                            <div className="border-t bg-slate-50 p-5">
+                            <div className="border-t bg-slate-50 dark:bg-slate-900 p-5">
                                 <div className="flex items-center justify-between">
                                     <span className="font-semibold text-slate-600">
                                         Total Hospital Cost
@@ -593,8 +593,8 @@ export default function ProfilePage() {
                 {/* Additional Medical Information */}
                 <section className="mt-8 grid gap-6 lg:grid-cols-2">
 
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                        <h3 className="text-xl font-bold text-slate-900">
+                    <div className="rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-6 shadow-sm">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-500">
                             Medical Information
                         </h3>
 
@@ -622,7 +622,7 @@ export default function ProfilePage() {
                         </div>
                     </div>
 
-                    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div className="rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-6 shadow-sm">
                         <h3 className="text-xl font-bold text-slate-900">
                             Hospital Information
                         </h3>
@@ -688,7 +688,7 @@ function SummaryCard({
     subtitle: string;
 }) {
     return (
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white  p-5 shadow-sm">
             <div className="flex items-start justify-between">
                 <div>
                     <p className="text-sm text-slate-400">

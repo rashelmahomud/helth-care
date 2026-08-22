@@ -34,7 +34,7 @@ export default function ContactPage() {
                 <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
                 <div className="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-blue-400/20 blur-3xl" />
 
-                <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28">
+                <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28 dark:bg-slate-900">
                     <div className="max-w-3xl">
                         <span className="inline-flex rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur">
                             Contact Us
