@@ -13,7 +13,7 @@ import {
 
 export default function AppointmentForm() {
     return (
-        <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-10">
+        <section className="rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-6 shadow-xl md:p-10">
             {/* Header */}
             <div className="mb-10">
                 <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700">

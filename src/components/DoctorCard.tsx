@@ -9,7 +9,7 @@ import {
 
 export default function DoctorCard() {
     return (
-        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
             {/* Doctor Image */}
             <div className="relative h-80 bg-gradient-to-br from-cyan-50 to-sky-100">
                 <Image
@@ -51,7 +51,7 @@ export default function DoctorCard() {
 
                 {/* Information */}
                 <div className="space-y-4">
-                    <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
+                    <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
                         <BriefcaseMedical
                             className="text-cyan-600"
                             size={22}
@@ -62,13 +62,13 @@ export default function DoctorCard() {
                                 Experience
                             </p>
 
-                            <h4 className="font-semibold">
+                            <h4 className="font-semibold dark:text-slate-500">
                                 15+ Years
                             </h4>
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
+                    <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
                         <Stethoscope
                             className="text-cyan-600"
                             size={22}
@@ -79,13 +79,13 @@ export default function DoctorCard() {
                                 Patients
                             </p>
 
-                            <h4 className="font-semibold">
+                            <h4 className="font-semibold dark:text-slate-500">
                                 12,500+
                             </h4>
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
+                    <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
                         <Award
                             className="text-cyan-600"
                             size={22}
@@ -96,7 +96,7 @@ export default function DoctorCard() {
                                 Qualification
                             </p>
 
-                            <h4 className="font-semibold">
+                            <h4 className="font-semibold dark:text-slate-500">
                                 MBBS, FCPS
                             </h4>
                         </div>

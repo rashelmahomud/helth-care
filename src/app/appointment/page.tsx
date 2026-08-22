@@ -6,10 +6,10 @@ import React from 'react';
 
 const AppoinmentPage = () => {
     return (
-        <main>
+        <main className='dark:bg-slate-900'>
             <AppointmentHero />
 
-            <section className="mx-auto max-w-7xl px-6 py-20">
+            <section className="mx-auto max-w-7xl px-6 py-20 ">
                 <div className="grid gap-10 lg:grid-cols-3">
                     <div className="space-y-8">
                         <DoctorCard />
