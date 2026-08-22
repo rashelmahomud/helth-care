@@ -28,7 +28,7 @@ export default function ContactPage() {
     };
 
     return (
-        <main className="bg-slate-50">
+        <main className="bg-slate-50 dark:bg-slate-900">
             {/* Hero */}
             <section className="relative overflow-hidden bg-gradient-to-br from-cyan-600 via-cyan-600 to-blue-700">
                 <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
@@ -74,8 +74,8 @@ export default function ContactPage() {
             </section>
 
             {/* Contact Information */}
-            <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 ">
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 ">
                     <ContactCard
                         icon={<Phone size={25} />}
                         title="Call Us"
@@ -108,16 +108,16 @@ export default function ContactPage() {
 
             {/* Contact Form + Sidebar */}
             <section className="pb-24">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl px-6 lg:px-8 ">
                     <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
                         {/* Form */}
-                        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+                        <div className="rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-6 shadow-sm md:p-10">
                             <div className="mb-8">
                                 <span className="text-sm font-semibold uppercase tracking-wider text-cyan-600">
                                     Send a Message
                                 </span>
 
-                                <h2 className="mt-2 text-3xl font-bold text-slate-900">
+                                <h2 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-500">
                                     How Can We Help?
                                 </h2>
 
@@ -285,12 +285,12 @@ export default function ContactPage() {
                             </div>
 
                             {/* Chat */}
-                            <div className="rounded-3xl border border-cyan-100 bg-cyan-50 p-8">
+                            <div className="rounded-3xl border border-cyan-100 bg-cyan-50 dark:bg-slate-900 p-8">
                                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-600 text-white">
                                     <MessageCircle size={26} />
                                 </div>
 
-                                <h3 className="mt-6 text-2xl font-bold text-slate-900">
+                                <h3 className="mt-6 text-2xl font-bold text-slate-900 dark:text-slate-500">
                                     Need Quick Help?
                                 </h3>
 
@@ -309,8 +309,8 @@ export default function ContactPage() {
                             </div>
 
                             {/* Address */}
-                            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-                                <h3 className="text-xl font-bold text-slate-900">
+                            <div className="rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-8 shadow-sm">
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-500">
                                     Our Location
                                 </h3>
 
@@ -320,7 +320,7 @@ export default function ContactPage() {
                                     </div>
 
                                     <div>
-                                        <p className="font-semibold text-slate-800">
+                                        <p className="font-semibold text-slate-800 dark:text-slate-500">
                                             City Care Hospital
                                         </p>
 
@@ -340,13 +340,13 @@ export default function ContactPage() {
             </section>
 
             {/* Bottom CTA */}
-            <section className="border-t border-slate-200 bg-white">
+            <section className="border-t border-slate-200 bg-white dark:bg-slate-900">
                 <div className="mx-auto max-w-7xl px-6 py-16 text-center lg:px-8">
                     <span className="text-sm font-semibold uppercase tracking-wider text-cyan-600">
                         Your Health Matters
                     </span>
 
-                    <h2 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
+                    <h2 className="mt-3 text-3xl font-bold text-slate-900 dark:text-slate-500 md:text-4xl">
                         Ready to Take Care of Your Health?
                     </h2>
 
@@ -383,12 +383,12 @@ function ContactCard({
     description,
 }: ContactCardProps) {
     return (
-        <div className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div className="group rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-600 transition group-hover:bg-cyan-600 group-hover:text-white">
                 {icon}
             </div>
 
-            <h3 className="mt-5 text-lg font-bold text-slate-900">
+            <h3 className="mt-5 text-lg font-bold text-slate-900 dark:text-slate-500">
                 {title}
             </h3>
 
