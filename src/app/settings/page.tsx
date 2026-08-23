@@ -1,20 +1,21 @@
 "use client";
 
-import { FileBadge, FileExclamationPoint, FileLock, FileMinusCornerIcon, FileScan, FileSignalIcon, FileSignatureIcon, FileUser, FishSymbolIcon } from "lucide-react";
+import useTheme from "@/src/hooks/useTheme";
+import { FileBadge, FileLock, FileMinusCornerIcon, FileScan, FileSignalIcon, FileSignatureIcon, FileUser, FishSymbolIcon } from "lucide-react";
 import { useState } from "react";
 
 
 type TabType = "general" | "appearance" | "notifications" | "security";
 
 export default function WebsiteSettings() {
-
+    const { theme, toggleTheme } = useTheme();
     const [activeTab, setActiveTab] = useState<TabType>("general");
     const [isSaved, setIsSaved] = useState<boolean>(false);
 
     // Form states
     const [siteName, setSiteName] = useState<string>("My Awesome App");
     const [siteUrl, setSiteUrl] = useState<string>("https://example.com");
-    const [theme, setTheme] = useState<string>("system");
+    // const [theme, setTheme] = useState<string>("system");
     const [emailAlerts, setEmailAlerts] = useState<boolean>(true);
     const [pushAlerts, setPushAlerts] = useState<boolean>(false);
 
@@ -155,7 +156,7 @@ export default function WebsiteSettings() {
                                 <div className="grid grid-cols-3 gap-4 pt-2">
                                     <button
                                         type="button"
-                                        onClick={() => setTheme("light")}
+                                        onClick={toggleTheme}
                                         className={`flex flex-col items-center justify-center p-4 rounded-xl border text-sm font-medium transition-all ${theme === "light"
                                             ? "border-indigo-500 bg-indigo-600/10 text-indigo-400"
                                             : "border-slate-800 bg-slate-950 text-slate-400 hover:border-slate-700"
@@ -167,7 +168,7 @@ export default function WebsiteSettings() {
 
                                     <button
                                         type="button"
-                                        onClick={() => setTheme("dark")}
+                                        onClick={toggleTheme}
                                         className={`flex flex-col items-center justify-center p-4 rounded-xl border text-sm font-medium transition-all ${theme === "dark"
                                             ? "border-indigo-500 bg-indigo-600/10 text-indigo-400"
                                             : "border-slate-800 bg-slate-950 text-slate-400 hover:border-slate-700"
@@ -175,18 +176,6 @@ export default function WebsiteSettings() {
                                     >
                                         <FishSymbolIcon className="text-xl mb-2" />
                                         Dark
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        onClick={() => setTheme("system")}
-                                        className={`flex flex-col items-center justify-center p-4 rounded-xl border text-sm font-medium transition-all ${theme === "system"
-                                            ? "border-indigo-500 bg-indigo-600/10 text-indigo-400"
-                                            : "border-slate-800 bg-slate-950 text-slate-400 hover:border-slate-700"
-                                            }`}
-                                    >
-                                        <FileExclamationPoint className="text-xl mb-2" />
-                                        System
                                     </button>
                                 </div>
                             </div>

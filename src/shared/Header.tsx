@@ -21,7 +21,6 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "../hooks/useAuth";
-import useTheme from "../hooks/useTheme";
 
 const navItems = [
     {
@@ -58,7 +57,7 @@ export default function Header() {
 
     const { user, logout } = useAuth();
     const router = useRouter();
-    const { theme, toggleTheme } = useTheme();
+
 
     // Close profile dropdown when clicking outside
     useEffect(() => {
@@ -180,23 +179,6 @@ export default function Header() {
 
                             <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
                         </button>
-                        <button
-                            onClick={toggleTheme}
-                            className="rounded-full p-3 transition hover:bg-slate-100 dark:hover:bg-slate-800"
-                            aria-label="Toggle theme"
-                        >
-                            {theme === "light" ? (
-                                <Moon
-                                    size={20}
-                                    className="text-slate-700"
-                                />
-                            ) : (
-                                <Sun
-                                    size={20}
-                                    className="text-yellow-400"
-                                />
-                            )}
-                        </button>
 
                         {/* User */}
                         {user ? (
@@ -236,10 +218,10 @@ export default function Header() {
 
                                 {/* ================= PROFILE DROPDOWN ================= */}
                                 {profileOpen && (
-                                    <div className="absolute right-0 top-14 w-72 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-2xl">
+                                    <div className="absolute right-0 top-14 w-72 overflow-hidden rounded-2xl border border-slate-100 bg-white dark:bg-slate-900 shadow-2xl">
 
                                         {/* User Info */}
-                                        <div className="border-b border-slate-100 bg-gradient-to-r from-cyan-50 to-blue-50 p-4">
+                                        <div className="border-b border-slate-100 bg-gradient-to-r from-cyan-50 to-blue-50 p-4 ">
                                             <div className="flex items-center gap-3">
 
                                                 <Image
