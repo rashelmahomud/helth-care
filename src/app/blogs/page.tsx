@@ -49,7 +49,7 @@ const Blogs = () => {
                         Latest Articles
                     </span>
 
-                    <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl">
+                    <h2 className="mt-6 text-4xl font-bold text-slate-900 dark:text-slate-500 md:text-5xl">
                         Health Tips &
                         <span className="block text-cyan-600">
                             Medical News
@@ -67,7 +67,7 @@ const Blogs = () => {
                     {blogs.map((blog) => (
                         <article
                             key={blog.id}
-                            className="group overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                            className="group overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border"
                         >
                             {/* Image */}
                             <div className="relative h-64 overflow-hidden  ">

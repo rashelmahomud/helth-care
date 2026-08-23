@@ -92,7 +92,7 @@ const Banner = () => {
                                 <ShieldCheck className="text-cyan-600" />
 
                                 <div>
-                                    <h4 className="font-semibold">100% Safe</h4>
+                                    <h4 className="font-semibold dark:text-slate-500">100% Safe</h4>
                                     <p className="text-sm text-slate-500">
                                         Trusted Healthcare
                                     </p>
@@ -106,7 +106,7 @@ const Banner = () => {
                                 <Users className="text-cyan-600" />
 
                                 <div>
-                                    <h4 className="font-semibold">18K+</h4>
+                                    <h4 className="font-semibold dark:text-slate-500">18K+</h4>
                                     <p className="text-sm text-slate-500">
                                         Happy Patients
                                     </p>
@@ -120,7 +120,7 @@ const Banner = () => {
                                 <Calendar className="text-cyan-600" />
 
                                 <div>
-                                    <h4 className="font-semibold">Easy Booking</h4>
+                                    <h4 className="font-semibold dark:text-slate-500">Easy Booking</h4>
                                     <p className="text-sm text-slate-500">
                                         Online Appointment
                                     </p>
@@ -134,7 +134,7 @@ const Banner = () => {
                                 <Clock3 className="text-cyan-600" />
 
                                 <div>
-                                    <h4 className="font-semibold">24/7</h4>
+                                    <h4 className="font-semibold dark:text-slate-500">24/7</h4>
                                     <p className="text-sm text-slate-500">
                                         Emergency Care
                                     </p>

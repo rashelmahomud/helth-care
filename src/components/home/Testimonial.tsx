@@ -79,7 +79,7 @@ const Testimonials = () => {
                                 </div>
 
                                 <div>
-                                    <h3 className="text-xl font-bold text-slate-900">
+                                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-500">
                                         {item.name}
                                     </h3>
 

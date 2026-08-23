@@ -62,7 +62,7 @@ const AppointmentCTA = () => {
                                     <CalendarDays className="text-cyan-600" size={32} />
                                 </div>
 
-                                <h3 className="text-xl font-bold text-slate-900">
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-500">
                                     Easy Booking
                                 </h3>
 
@@ -76,7 +76,7 @@ const AppointmentCTA = () => {
                                     <ShieldCheck className="text-emerald-600" size={32} />
                                 </div>
 
-                                <h3 className="text-xl font-bold text-slate-900">
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-500">
                                     Trusted Doctors
                                 </h3>
 

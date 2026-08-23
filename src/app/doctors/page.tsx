@@ -423,7 +423,7 @@ export default function Doctors() {
                                         size={16}
                                         className="fill-yellow-400 text-yellow-400"
                                     />
-                                    <span className="text-sm font-semibold">
+                                    <span className="text-sm font-semibold dark:text-slate-500">
                                         {doctor.rating}
                                     </span>
                                 </div>
@@ -431,7 +431,7 @@ export default function Doctors() {
 
                             {/* Content */}
                             <div className="p-6">
-                                <h3 className="text-2xl font-bold text-slate-900">
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-500">
                                     {doctor.name}
                                 </h3>
 

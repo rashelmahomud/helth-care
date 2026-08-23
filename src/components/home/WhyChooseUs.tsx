@@ -121,7 +121,7 @@ export default function WhyChooseUs() {
                                             <Icon className="text-cyan-600" />
                                         </div>
 
-                                        <h3 className="mt-5 text-xl font-bold text-slate-900">
+                                        <h3 className="mt-5 text-xl font-bold text-slate-900 dark:text-slate-500">
                                             {feature.title}
                                         </h3>
 
