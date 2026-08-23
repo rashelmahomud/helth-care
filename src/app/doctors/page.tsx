@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,8 +8,10 @@ import {
     Stethoscope,
 } from "lucide-react";
 import { DoctorsType } from "@/src/types/doctors";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 
-const doctors: DoctorsType[] = [
+export const doctorsall: DoctorsType[] = [
 
     {
 
@@ -376,14 +379,36 @@ const doctors: DoctorsType[] = [
 
 ];
 
-
-
 export default function Doctors() {
+
+    const [search, setSearch] = useState('')
+
+    const doctors = doctorsall.filter((doctor) => doctor.specialty.toLowerCase().includes(search.toLowerCase()) || doctor.name.toLowerCase().includes(search.toLowerCase()))
+
+
+
+    const pathname = usePathname();
+    // Check if the current route is NOT the home page ('/')
+    const isNotHomePage = pathname !== '/';
+
+
     return (
         <section className="bg-slate-50 py-24 dark:bg-slate-900">
             <div className="mx-auto max-w-7xl px-6">
                 {/* Header */}
                 <div className="mx-auto max-w-3xl text-center">
+                    {/* search fields */}
+                    {
+                        isNotHomePage && <div className="my-5 size-1/3 mx-auto">
+                            <input
+                                type="text"
+                                placeholder="Search by specialty..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-cyan-500"
+                            />
+                        </div>
+                    }
                     <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700">
                         Meet Our Doctors
                     </span>

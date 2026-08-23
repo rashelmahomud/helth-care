@@ -15,8 +15,6 @@ import {
     LogOut,
     CalendarDays,
     ChevronDown,
-    Moon,
-    Sun,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -52,7 +50,9 @@ const navItems = [
 export default function Header() {
     const [open, setOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false)
 
+    const [search, setSearch] = useState('')
     const profileRef = useRef<HTMLDivElement>(null);
 
     const { user, logout } = useAuth();
@@ -161,13 +161,53 @@ export default function Header() {
                     <div className="hidden items-center gap-2 lg:flex">
 
                         {/* Search */}
-                        <button
-                            type="button"
-                            aria-label="Search"
-                            className="rounded-full p-2.5 text-slate-500 transition hover:bg-slate-100 hover:text-cyan-600"
-                        >
-                            <Search size={20} />
-                        </button>
+
+
+
+
+
+
+
+
+
+
+
+
+                        {/* search fields  */}
+                        {
+                            searchOpen ? <div className="my-5 size-1/3 mx-auto">
+                                <input
+                                    type="text"
+                                    placeholder="Search by specialty..."
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-cyan-500"
+                                />
+                            </div> : <button
+                                onClick={() => setSearchOpen(!searchOpen)}
+                                type="button"
+                                aria-label="Search"
+                                className="rounded-full p-2.5 text-slate-500 transition hover:bg-slate-100 hover:text-cyan-600"
+                            >
+                                <Search size={20} />
+                            </button>
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         {/* Notification */}
                         <button
