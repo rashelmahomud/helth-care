@@ -47,7 +47,7 @@ const Statistics = () => {
                         Our Achievements
                     </span>
 
-                    <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl">
+                    <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl dark:text-slate-500">
                         Trusted By Thousands
                         <span className="block text-cyan-600">
                             Delivering Quality Healthcare

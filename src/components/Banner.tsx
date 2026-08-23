@@ -16,7 +16,7 @@ const Banner = () => {
                         ❤️ Trusted Healthcare Platform
                     </span>
 
-                    <h1 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-6xl">
+                    <h1 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-6xl dark:text-slate-500">
                         Caring For Your
                         <span className="block text-cyan-600">
                             Health Is Our Priority

@@ -60,7 +60,7 @@ const FAQ = () => {
                             Frequently Asked Questions
                         </span>
 
-                        <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl">
+                        <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl dark:text-slate-500">
                             Have Questions?
                             <span className="block text-cyan-600">
                                 We've Got Answers

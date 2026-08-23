@@ -65,7 +65,7 @@ export default function Services() {
                         Our Services
                     </span>
 
-                    <h2 className="mt-5 text-4xl font-bold text-slate-900 md:text-5xl">
+                    <h2 className="mt-5 text-4xl font-bold text-slate-900 md:text-5xl dark:text-slate-500">
                         Healthcare Services
                         <span className="block text-cyan-600">
                             Designed For You

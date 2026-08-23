@@ -59,7 +59,7 @@ export default async function BlogDetails({
         blogs["healthy-heart-tips"];
 
     return (
-        <main className="bg-slate-50">
+        <main className="bg-slate-50 dark:bg-slate-900">
 
             {/* Hero */}
             <section className="bg-gradient-to-r from-cyan-600 to-sky-700 py-24">
@@ -127,9 +127,9 @@ export default async function BlogDetails({
                         <div className="prose prose-lg mt-12 max-w-none">
 
                             {blog.content.map((section) => (
-                                <div key={section.heading} className="mb-12">
+                                <div key={section.heading} className="mb-12 ">
 
-                                    <h2 className="text-3xl font-bold text-slate-900">
+                                    <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-500">
                                         {section.heading}
                                     </h2>
 
@@ -140,7 +140,7 @@ export default async function BlogDetails({
                                 </div>
                             ))}
 
-                            <div className="rounded-3xl bg-cyan-50 p-8">
+                            <div className="rounded-3xl bg-cyan-50 dark:bg-slate-900 dark:border p-8">
 
                                 <h3 className="text-2xl font-bold">
                                     Healthy Lifestyle Checklist
@@ -176,7 +176,7 @@ export default async function BlogDetails({
                     {/* Sidebar */}
                     <aside className="space-y-8">
 
-                        <div className="rounded-3xl bg-white p-8 shadow">
+                        <div className="rounded-3xl bg-white dark:bg-slate-900 dark:border p-8 shadow">
 
                             <h3 className="text-2xl font-bold">
                                 Share This Article
@@ -184,19 +184,19 @@ export default async function BlogDetails({
 
                             <div className="mt-6 flex gap-4">
 
-                                <button className="rounded-xl bg-slate-100 p-3 hover:bg-cyan-100">
+                                <button className="rounded-xl bg-slate-100 dark:text-slate-500 p-3 hover:bg-cyan-100">
                                     <Wrench />
                                 </button>
 
-                                <button className="rounded-xl bg-slate-100 p-3 hover:bg-cyan-100">
+                                <button className="rounded-xl bg-slate-100 dark:text-slate-500 p-3 hover:bg-cyan-100">
                                     <Camera />
                                 </button>
 
-                                <button className="rounded-xl bg-slate-100 p-3 hover:bg-cyan-100">
+                                <button className="rounded-xl bg-slate-100 dark:text-slate-500 p-3 hover:bg-cyan-100">
                                     <Phone />
                                 </button>
 
-                                <button className="rounded-xl bg-slate-100 p-3 hover:bg-cyan-100">
+                                <button className="rounded-xl bg-slate-100 dark:text-slate-500 p-3 hover:bg-cyan-100">
                                     <Share2 />
                                 </button>
 
@@ -230,11 +230,11 @@ export default async function BlogDetails({
             </section>
 
             {/* Related Articles */}
-            <section className="bg-white py-20">
+            <section className="bg-white dark:bg-slate-900 py-20">
 
                 <div className="mx-auto max-w-7xl px-6">
 
-                    <h2 className="text-center text-4xl font-bold">
+                    <h2 className="text-center text-4xl font-bold dark:text-slate-500">
                         Related Articles
                     </h2>
 
@@ -243,7 +243,7 @@ export default async function BlogDetails({
                         {[1, 2, 3].map((item) => (
                             <div
                                 key={item}
-                                className="rounded-3xl border bg-slate-50 p-6 transition hover:-translate-y-2 hover:shadow-xl"
+                                className="rounded-3xl border bg-slate-50 dark:bg-slate-900 p-6 transition hover:-translate-y-2 hover:shadow-xl"
                             >
                                 <h3 className="text-xl font-bold">
                                     Healthcare Article {item}

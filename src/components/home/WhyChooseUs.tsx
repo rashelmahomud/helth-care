@@ -95,7 +95,7 @@ export default function WhyChooseUs() {
                             Why Choose Us
                         </span>
 
-                        <h2 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
+                        <h2 className="mt-6 text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl dark:text-slate-500">
                             We Provide The Best
                             <span className="block text-cyan-600">
                                 Healthcare Experience
