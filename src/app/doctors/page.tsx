@@ -381,9 +381,9 @@ export const doctorsall: DoctorsType[] = [
 
 export default function Doctors() {
 
-    const [search, setSearch] = useState('')
+    const [doctorSearch, setDoctorSearch] = useState('')
 
-    const doctors = doctorsall.filter((doctor) => doctor.specialty.toLowerCase().includes(search.toLowerCase()) || doctor.name.toLowerCase().includes(search.toLowerCase()))
+    const doctors = doctorsall.filter((doctor) => doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase()))
 
 
 
@@ -403,8 +403,8 @@ export default function Doctors() {
                             <input
                                 type="text"
                                 placeholder="Search by specialty..."
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
+                                value={doctorSearch}
+                                onChange={(e) => setDoctorSearch(e.target.value)}
                                 className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-cyan-500"
                             />
                         </div>
