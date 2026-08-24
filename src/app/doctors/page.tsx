@@ -379,12 +379,25 @@ export const doctorsall: DoctorsType[] = [
 
 ];
 
+const specializations = [
+    "Cardiologist",
+    "Neurologist",
+    "Dermatologist",
+    "Pediatrician",
+    "Dentist",
+    "Orthopedic",
+];
+
 export default function Doctors() {
 
     const [doctorSearch, setDoctorSearch] = useState('')
+    const [special, setSpecial] = useState("")
 
     const doctors = doctorsall.filter((doctor) => doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase()))
 
+
+
+    const filteredDoctor = special ? doctorsall.filter((doctor) => doctor.specialty === special) : doctorsall;
 
 
     const pathname = usePathname();
@@ -397,18 +410,32 @@ export default function Doctors() {
             <div className="mx-auto max-w-7xl px-6">
                 {/* Header */}
                 <div className="mx-auto max-w-3xl text-center">
+
                     {/* search fields */}
-                    {
-                        isNotHomePage && <div className="my-5 size-1/3 mx-auto">
-                            <input
-                                type="text"
-                                placeholder="Search by specialty..."
-                                value={doctorSearch}
-                                onChange={(e) => setDoctorSearch(e.target.value)}
-                                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-cyan-500"
-                            />
+                    <div className="flex items-center gap-5 ">
+                        <div>
+                            <select onChange={(e) => setSpecial(e.target.value)} value={special}>
+                                <option value="">All Specializations</option>
+                                {
+                                    specializations.map((doctor) => <option key={doctor}>{doctor}</option>)
+                                }
+                            </select>
                         </div>
-                    }
+                        <div>
+                            {
+                                isNotHomePage && <div className="my-5 size-1/3 mx-auto">
+                                    <input
+                                        type="text"
+                                        placeholder="Search by specialty..."
+                                        value={doctorSearch}
+                                        onChange={(e) => setDoctorSearch(e.target.value)}
+                                        className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-cyan-500"
+                                    />
+                                </div>
+                            }
+                        </div>
+                    </div>
+
                     <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700">
                         Meet Our Doctors
                     </span>
@@ -429,7 +456,7 @@ export default function Doctors() {
 
                 {/* Cards */}
                 <div className="mt-16 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-                    {doctors.map((doctor) => (
+                    {filteredDoctor.map((doctor) => (
                         <div
                             key={doctor.id}
                             className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-900"
