@@ -393,11 +393,26 @@ export default function Doctors() {
     const [doctorSearch, setDoctorSearch] = useState('')
     const [special, setSpecial] = useState("")
 
-    const doctors = doctorsall.filter((doctor) => doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase()))
+
+
+    // filtering searcing and selected sercing
+    // const doctors = doctorsall.filter((doctor) => doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase()))
+    //================
+    // const doctors = doctorsall.filter((doctor) => !special || doctor.specialty === special)
 
 
 
-    const filteredDoctor = special ? doctorsall.filter((doctor) => doctor.specialty === special) : doctorsall;
+
+    const doctors = doctorsall.filter((doctor) => {
+
+        const doctorSpecially = doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase())
+
+        const doctorSelected = !special || doctor.specialty === special
+
+        return doctorSpecially && doctorSelected
+    }
+    )
+
 
 
     const pathname = usePathname();
@@ -456,7 +471,7 @@ export default function Doctors() {
 
                 {/* Cards */}
                 <div className="mt-16 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-                    {filteredDoctor.map((doctor) => (
+                    {doctors.map((doctor) => (
                         <div
                             key={doctor.id}
                             className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-slate-900"
