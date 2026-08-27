@@ -496,6 +496,12 @@ export default function ProfilePage() {
                         </div>
 
                         {/* Payment Card */}
+
+
+
+
+
+
                         <div className="h-fit rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white shadow-xl">
 
                             <div className="flex items-center justify-between">
@@ -587,6 +593,13 @@ export default function ProfilePage() {
                                 Download Invoice
                             </button>
                         </div>
+
+
+
+
+
+
+
                     </div>
                 </section>
 
@@ -635,7 +648,7 @@ export default function ProfilePage() {
                                     <p className="text-xs text-slate-400">
                                         Hospital
                                     </p>
-                                    <p className="font-semibold text-slate-800">
+                                    <p className="font-semibold text-slate-800 dark:text-slate-500">
                                         MediCare General Hospital
                                     </p>
                                 </div>
@@ -644,10 +657,10 @@ export default function ProfilePage() {
                             <div className="flex items-center gap-3">
                                 <MapPin className="text-cyan-600" />
                                 <div>
-                                    <p className="text-xs text-slate-400">
+                                    <p className="text-xs text-slate-400 dark:text-slate-500">
                                         Location
                                     </p>
-                                    <p className="font-semibold text-slate-800">
+                                    <p className="font-semibold text-slate-800 dark:text-slate-500">
                                         Dhaka, Bangladesh
                                     </p>
                                 </div>
@@ -659,7 +672,7 @@ export default function ProfilePage() {
                                     <p className="text-xs text-slate-400">
                                         Emergency
                                     </p>
-                                    <p className="font-semibold text-slate-800">
+                                    <p className="font-semibold text-slate-800 dark:text-slate-500">
                                         +880 1234-567890
                                     </p>
                                 </div>
