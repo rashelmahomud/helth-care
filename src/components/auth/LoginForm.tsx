@@ -260,7 +260,7 @@ export default function LoginForm() {
                 <button
                     onClick={handelgoogleLogin}
                     type="button"
-                    className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 py-4 font-medium transition hover:bg-slate-50"
+                    className="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 py-4 font-medium transition hover:bg-slate-50 dark:text-slate-500"
                 >
                     <svg
                         width="22"

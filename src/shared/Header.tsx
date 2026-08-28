@@ -17,8 +17,8 @@ import {
     ChevronDown,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import useAuth from "../hooks/useAuth";
+import useLogout from "../hooks/useLogout";
 
 const navItems = [
     {
@@ -56,7 +56,8 @@ export default function Header() {
     const profileRef = useRef<HTMLDivElement>(null);
 
     const { user, logout } = useAuth();
-    const router = useRouter();
+
+    const handleLogout = useLogout();
 
 
     // Close profile dropdown when clicking outside
@@ -95,18 +96,18 @@ export default function Header() {
         };
     }, []);
 
-    const handleLogout = async () => {
-        try {
-            await logout();
+    // const handleLogout = async () => {
+    //     try {
+    //         await logout();
 
-            setProfileOpen(false);
-            setOpen(false);
+    //         setProfileOpen(false);
+    //         setOpen(false);
 
-            router.push("/login");
-        } catch (error) {
-            console.error("Logout failed:", error);
-        }
-    };
+    //         router.push("/login");
+    //     } catch (error) {
+    //         console.error("Logout failed:", error);
+    //     }
+    // };
 
     const handleMobileLink = () => {
         setOpen(false);
