@@ -151,7 +151,7 @@ export default function DashboardPage() {
             {/* Sidebar */}
             <aside
                 className={`
-                    fixed left-0 top-0 z-50 flex h-screen w-72
+                    fixed left-0 top-0 flex h-screen w-72
                     flex-col border-r border-slate-200 bg-white
                     transition-transform duration-300
                     dark:border-slate-800 dark:bg-slate-900
@@ -214,8 +214,6 @@ export default function DashboardPage() {
 
                     </div>
                 </div>
-
-
 
 
 
@@ -327,40 +325,8 @@ export default function DashboardPage() {
                         </h2>
                     </div>
 
-                    <div className="ml-auto flex items-center gap-3">
 
-                        {/* Notification */}
-                        <button className="relative rounded-full p-3 transition hover:bg-slate-100 dark:hover:bg-slate-800">
 
-                            <Bell size={20} />
-
-                            <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500" />
-
-                        </button>
-
-                        {/* User */}
-                        <Link
-                            href="/profile"
-                            className="flex items-center gap-3 rounded-xl p-1.5 transition hover:bg-slate-100 dark:hover:bg-slate-800"
-                        >
-
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 text-sm font-bold text-white">
-                                MR
-                            </div>
-
-                            <div className="hidden text-left sm:block">
-                                <p className="text-sm font-semibold">
-                                    Md Rashel
-                                </p>
-
-                                <p className="text-xs text-slate-500">
-                                    Patient
-                                </p>
-                            </div>
-
-                        </Link>
-
-                    </div>
                 </header>
 
                 {/* Content */}

@@ -96,18 +96,6 @@ export default function Header() {
         };
     }, []);
 
-    // const handleLogout = async () => {
-    //     try {
-    //         await logout();
-
-    //         setProfileOpen(false);
-    //         setOpen(false);
-
-    //         router.push("/login");
-    //     } catch (error) {
-    //         console.error("Logout failed:", error);
-    //     }
-    // };
 
     const handleMobileLink = () => {
         setOpen(false);
