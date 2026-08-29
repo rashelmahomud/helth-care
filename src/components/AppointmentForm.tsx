@@ -96,7 +96,7 @@ export default function AppointmentForm() {
                         <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
                             <Stethoscope className="text-slate-400" size={18} />
 
-                            <select className="w-full bg-transparent px-3 py-4 outline-none">
+                            <select className="w-full bg-transparent px-3 py-4 outline-none bg-white dark:bg-slate-900">
                                 <option>Select Department</option>
                                 <option>Cardiology</option>
                                 <option>Neurology</option>
