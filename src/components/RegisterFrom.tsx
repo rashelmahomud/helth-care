@@ -90,11 +90,11 @@ export default function RegisterForm() {
         <div className="w-full max-w-lg">
             {/* Heading */}
             <div className="mb-8">
-                <h1 className="text-4xl font-bold text-slate-900">
+                <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-500">
                     Create Account
                 </h1>
 
-                <p className="mt-3 text-slate-500">
+                <p className="mt-3 text-slate-500 ">
                     Create your healthcare account to book appointments
                     and manage your medical records.
                 </p>
@@ -300,7 +300,7 @@ export default function RegisterForm() {
                     </div>
 
                     <div className="relative flex justify-center">
-                        <span className="bg-white px-4 text-sm text-slate-500">
+                        <span className="bg-white dark:bg-slate-900 px-4 text-sm text-slate-500 ">
                             OR
                         </span>
                     </div>
@@ -309,7 +309,7 @@ export default function RegisterForm() {
                 {/* Google */}
                 <button
                     type="button"
-                    className="w-full rounded-xl border py-4 font-medium transition hover:bg-slate-50"
+                    className="w-full rounded-xl border py-4 font-medium transition hover:bg-slate-50 dark:hover:bg-slate-500"
                 >
                     Continue with Google
                 </button>

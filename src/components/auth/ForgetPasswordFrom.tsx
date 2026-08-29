@@ -43,7 +43,7 @@ export default function ForgotPasswordForm() {
 
     if (success) {
         return (
-            <div className="text-center">
+            <div className="text-center dark:bg-slate-900">
                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
                     <CheckCircle2
                         size={40}
@@ -88,7 +88,7 @@ export default function ForgotPasswordForm() {
                 className="space-y-6"
             >
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block font-medium dark:text-slate-500">
                         Email Address
                     </label>
 

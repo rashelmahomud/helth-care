@@ -51,7 +51,7 @@ export default function AuthBanner() {
                     <div className="absolute h-[320px] w-[320px] rounded-full bg-cyan-300/30 blur-3xl" />
 
                     {/* Image Card */}
-                    <div className="relative overflow-hidden rounded-[35px] border border-white/20 bg-white/10 p-6 backdrop-blur-xl shadow-2xl">
+                    <div className="relative overflow-hidden rounded-[35px] border border-white/20 bg-white/10 dark:bg-slate-900 p-6 backdrop-blur-xl shadow-2xl">
                         <Image
                             src="/images/doctor.png"
                             alt="Doctor"
@@ -66,12 +66,12 @@ export default function AuthBanner() {
                     </div>
 
                     {/* Floating Card 1 */}
-                    <div className="absolute -left-8 top-10 rounded-2xl bg-white p-4 shadow-xl">
+                    <div className="absolute -left-8 top-10 rounded-2xl bg-white dark:bg-slate-900 p-4 shadow-xl">
                         <div className="flex items-center gap-3">
                             <ShieldCheck className="text-cyan-600" />
 
                             <div>
-                                <h4 className="font-semibold text-slate-800">
+                                <h4 className="font-semibold text-slate-800 dark:text-slate-500">
                                     100% Secure
                                 </h4>
 
@@ -83,12 +83,12 @@ export default function AuthBanner() {
                     </div>
 
                     {/* Floating Card 2 */}
-                    <div className="absolute -right-8 bottom-16 rounded-2xl bg-white p-4 shadow-xl">
+                    <div className="absolute -right-8 bottom-16 rounded-2xl bg-white dark:bg-slate-900 p-4 shadow-xl">
                         <div className="flex items-center gap-3">
                             <Users className="text-cyan-600" />
 
                             <div>
-                                <h4 className="font-semibold text-slate-800">
+                                <h4 className="font-semibold text-slate-800 dark:text-slate-500">
                                     18K+
                                 </h4>
 
@@ -102,7 +102,7 @@ export default function AuthBanner() {
 
                 {/* Bottom Statistics */}
                 <div className="mt-12 grid grid-cols-3 gap-4">
-                    <div className="rounded-2xl bg-white/10 p-5 text-center backdrop-blur-md">
+                    <div className="rounded-2xl bg-white/10 dark:bg-slate-900 p-5 text-center backdrop-blur-md">
                         <h3 className="text-3xl font-bold text-white">
                             120+
                         </h3>
@@ -112,7 +112,7 @@ export default function AuthBanner() {
                         </p>
                     </div>
 
-                    <div className="rounded-2xl bg-white/10 p-5 text-center backdrop-blur-md">
+                    <div className="rounded-2xl bg-white/10 dark:bg-slate-900 p-5 text-center backdrop-blur-md">
                         <h3 className="text-3xl font-bold text-white">
                             25+
                         </h3>
@@ -122,7 +122,7 @@ export default function AuthBanner() {
                         </p>
                     </div>
 
-                    <div className="rounded-2xl bg-white/10 p-5 text-center backdrop-blur-md">
+                    <div className="rounded-2xl bg-white/10 dark:bg-slate-900 p-5 text-center backdrop-blur-md">
                         <div className="flex justify-center">
                             <Star
                                 className="fill-yellow-400 text-yellow-400"

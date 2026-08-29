@@ -96,7 +96,7 @@ export default function LoginForm() {
 
             {/* Heading */}
             <div className="mb-8">
-                <h1 className="text-4xl font-bold text-slate-900">
+                <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-500">
                     Welcome Back 👋
                 </h1>
 
@@ -132,7 +132,7 @@ export default function LoginForm() {
                             placeholder="john@example.com"
                             required
                             autoComplete="email"
-                            className="w-full bg-transparent px-3 py-4 outline-none"
+                            className="w-full bg-transparent px-3 py-4 outline-none dark:text-slate-500"
                         />
                     </div>
                 </div>
@@ -172,7 +172,7 @@ export default function LoginForm() {
                             placeholder="••••••••"
                             required
                             autoComplete="current-password"
-                            className="w-full bg-transparent px-3 py-4 outline-none"
+                            className="w-full bg-transparent px-3 py-4 outline-none dark:text-slate-500"
                         />
 
                         <button
@@ -250,7 +250,7 @@ export default function LoginForm() {
                     </div>
 
                     <div className="relative flex justify-center">
-                        <span className="bg-white px-4 text-sm text-slate-500">
+                        <span className="bg-white dark:bg-slate-900 px-4 text-sm text-slate-500">
                             OR CONTINUE WITH
                         </span>
                     </div>
