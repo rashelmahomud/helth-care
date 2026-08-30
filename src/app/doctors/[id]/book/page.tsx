@@ -1,7 +1,9 @@
+'use client'
 import { DoctorsType } from "@/src/types/doctors";
 import { Award, BriefcaseMedical, CalendarDays, Clock3, FileText, Mail, Phone, Send, Star, Stethoscope, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { use, useState } from "react";
 
 const doctors: DoctorsType[] = [
 
@@ -345,279 +347,404 @@ const doctors: DoctorsType[] = [
 
 ];
 
-const BookPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+const BookPage = ({ params }: { params: Promise<{ id: string }> }) => {
 
-    const { id } = await params;
+    const { id } = use(params);
 
-    const data = doctors.filter((doctor) => doctor.id.toString() === id)
+
+
+    const doctor = doctors.find((doctor) => doctor.id.toString() === id)
+
+    const initialFromData = {
+        fullName: '',
+        email: '',
+        phone: '',
+        // department: '',
+        department: doctor ? doctor.specialty : '',
+        doctorName: doctor ? doctor.name : '',
+        language: doctor ? doctor.languages : '',
+        date: '',
+        time: '',
+        concern: ''
+    }
+
+    const [fromData, setFromData] = useState(initialFromData)
+
+
+
+
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+
+        setFromData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log("Form Submitted Data:", { ...fromData });
+        alert("Appointment booked successfully!");
+        setFromData(initialFromData)
+
+    };
+
+
+    if (!doctor) {
+        return "Doctor Not Found !!!"
+    }
 
     return (
         <div className="my-10">
 
-            {
-                data.map((doctor) => <div key={doctor.id} className="grid lg:grid-cols-3 gap-10">
-                    <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-                        {/* Doctor Image */}
-                        <div className="relative h-80 bg-gradient-to-br from-cyan-50 to-sky-100">
-                            <Image
-                                src={doctor.image}
-                                alt="Doctor"
-                                fill
-                                priority
-                                className="object-contain"
-                            />
-                        </div>
-
-                        {/* Content */}
-                        <div className="space-y-5 p-6">
-                            {/* Name */}
-                            <div>
-                                <h2 className="text-2xl font-bold text-slate-900">
-                                    {doctor.name}
-                                </h2>
-
-                                <p className="font-medium text-cyan-600">
-                                    Senior Cardiologist
-                                </p>
-                            </div>
-
-                            {/* Rating */}
-                            <div className="flex items-center gap-2">
-                                <div className="flex text-yellow-400">
-                                    <Star size={18} fill="currentColor" />
-                                    <Star size={18} fill="currentColor" />
-                                    <Star size={18} fill="currentColor" />
-                                    <Star size={18} fill="currentColor" />
-                                    <Star size={18} fill="currentColor" />
-                                </div>
-
-                                <span className="text-sm text-slate-500">
-                                    (4.9 Rating)
-                                </span>
-                            </div>
-
-                            {/* Information */}
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
-                                    <BriefcaseMedical
-                                        className="text-cyan-600"
-                                        size={22}
-                                    />
-
-                                    <div>
-                                        <p className="text-sm text-slate-500">
-                                            Experience
-                                        </p>
-
-                                        <h4 className="font-semibold dark:text-slate-500">
-                                            15+ Years
-                                        </h4>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
-                                    <Stethoscope
-                                        className="text-cyan-600"
-                                        size={22}
-                                    />
-
-                                    <div>
-                                        <p className="text-sm text-slate-500">
-                                            Patients
-                                        </p>
-
-                                        <h4 className="font-semibold dark:text-slate-500">
-                                            12,500+
-                                        </h4>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
-                                    <Award
-                                        className="text-cyan-600"
-                                        size={22}
-                                    />
-
-                                    <div>
-                                        <p className="text-sm text-slate-500">
-                                            Qualification
-                                        </p>
-
-                                        <h4 className="font-semibold dark:text-slate-500">
-                                            MBBS, FCPS
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Button */}
-                            <Link
-                                href="/doctors"
-                                className="block rounded-xl bg-cyan-600 py-3 text-center font-semibold text-white transition hover:bg-cyan-700"
-                            >
-                                View Full Profile
-                            </Link>
-                        </div>
+            <div className="grid lg:grid-cols-3 gap-10">
+                <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                    {/* Doctor Image */}
+                    <div className="relative h-80 bg-gradient-to-br from-cyan-50 to-sky-100">
+                        <Image
+                            src={doctor.image}
+                            alt="Doctor"
+                            fill
+                            priority
+                            className="object-contain"
+                        />
                     </div>
-                    <section className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-6 shadow-xl md:p-10 ">
-                        {/* Header */}
-                        <div className="mb-10">
-                            <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700">
-                                Appointment Form
-                            </span>
 
-                            <h2 className="mt-4 text-3xl font-bold text-slate-900">
-                                Book Your Appointment
+                    {/* Content */}
+                    <div className="space-y-5 p-6">
+                        {/* Name */}
+                        <div>
+                            <h2 className="text-2xl font-bold text-slate-900">
+                                {doctor?.name}
                             </h2>
 
-                            <p className="mt-2 text-slate-500">
-                                Fill out the form below and our medical team will contact you shortly
-                                to confirm your appointment.
+                            <p className="font-medium text-cyan-600">
+                                {doctor?.specialty}
                             </p>
                         </div>
 
-                        <form className="space-y-6">
-                            {/* Row 1 */}
-                            <div className="grid gap-6 md:grid-cols-2">
-                                {/* Name */}
+                        {/* Rating */}
+                        <div className="flex items-center gap-2">
+                            <div className="flex text-yellow-400">
+                                <Star size={18} fill="currentColor" />
+                                <Star size={18} fill="currentColor" />
+                                <Star size={18} fill="currentColor" />
+                                <Star size={18} fill="currentColor" />
+                                <Star size={18} fill="currentColor" />
+                            </div>
+
+                            <span className="text-sm text-slate-500">
+                                {doctor?.rating}
+                            </span>
+                        </div>
+
+                        {/* Information */}
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
+                                <BriefcaseMedical
+                                    className="text-cyan-600"
+                                    size={22}
+                                />
+
                                 <div>
-                                    <label className="mb-2 block font-medium text-slate-700">
-                                        Full Name
-                                    </label>
+                                    <p className="text-sm text-slate-500">
+                                        Experience
+                                    </p>
 
-                                    <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
-                                        <User className="text-slate-400" size={18} />
-
-                                        <input
-                                            type="text"
-                                            placeholder="John Smith"
-                                            className="w-full bg-transparent px-3 py-4 outline-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Email */}
-                                <div>
-                                    <label className="mb-2 block font-medium text-slate-700">
-                                        Email Address
-                                    </label>
-
-                                    <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
-                                        <Mail className="text-slate-400" size={18} />
-
-                                        <input
-                                            type="email"
-                                            placeholder="john@email.com"
-                                            className="w-full bg-transparent px-3 py-4 outline-none"
-                                        />
-                                    </div>
+                                    <h4 className="font-semibold dark:text-slate-500">
+                                        {doctor?.experience}
+                                    </h4>
                                 </div>
                             </div>
 
-                            {/* Row 2 */}
-                            <div className="grid gap-6 md:grid-cols-2">
-                                {/* Phone */}
+                            <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
+                                <Stethoscope
+                                    className="text-cyan-600"
+                                    size={22}
+                                />
+
                                 <div>
-                                    <label className="mb-2 block font-medium text-slate-700">
-                                        Phone Number
-                                    </label>
+                                    <p className="text-sm text-slate-500">
+                                        Patients
+                                    </p>
 
-                                    <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
-                                        <Phone className="text-slate-400" size={18} />
-
-                                        <input
-                                            type="tel"
-                                            placeholder="+880 1234 567890"
-                                            className="w-full bg-transparent px-3 py-4 outline-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Department */}
-                                <div>
-                                    <label className="mb-2 block font-medium text-slate-700">
-                                        Department
-                                    </label>
-
-                                    <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
-                                        <Stethoscope className="text-slate-400" size={18} />
-
-                                        <select className="w-full bg-transparent px-3 py-4 outline-none bg-white dark:bg-slate-900">
-                                            <option>Select Department</option>
-                                            <option>Cardiology</option>
-                                            <option>Neurology</option>
-                                            <option>Orthopedics</option>
-                                            <option>Dental</option>
-                                            <option>Pediatrics</option>
-                                        </select>
-                                    </div>
+                                    <h4 className="font-semibold dark:text-slate-500">
+                                        {doctor?.patients}
+                                    </h4>
                                 </div>
                             </div>
 
-                            {/* Row 3 */}
-                            <div className="grid gap-6 md:grid-cols-2">
-                                {/* Date */}
+                            <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-900 dark:border p-3">
+                                <Award
+                                    className="text-cyan-600"
+                                    size={22}
+                                />
+
                                 <div>
-                                    <label className="mb-2 block font-medium text-slate-700">
-                                        Appointment Date
-                                    </label>
+                                    <p className="text-sm text-slate-500">
+                                        Qualification
+                                    </p>
 
-                                    <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
-                                        <CalendarDays className="text-slate-400" size={18} />
-
-                                        <input
-                                            type="date"
-                                            className="w-full bg-transparent px-3 py-4 outline-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Time */}
-                                <div>
-                                    <label className="mb-2 block font-medium text-slate-700">
-                                        Preferred Time
-                                    </label>
-
-                                    <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
-                                        <Clock3 className="text-slate-400" size={18} />
-
-                                        <input
-                                            type="time"
-                                            className="w-full bg-transparent px-3 py-4 outline-none"
-                                        />
-                                    </div>
+                                    <h4 className="font-semibold dark:text-slate-500">
+                                        {doctor?.degree}
+                                    </h4>
                                 </div>
                             </div>
+                        </div>
 
-                            {/* Message */}
+                        {/* Button */}
+                        <Link
+                            href="/doctors"
+                            className="block rounded-xl bg-cyan-600 py-3 text-center font-semibold text-white transition hover:bg-cyan-700"
+                        >
+                            View Full Profile
+                        </Link>
+                    </div>
+                </div>
+                <section className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 p-6 shadow-xl md:p-10 ">
+                    {/* Header */}
+                    <div className="mb-10">
+                        <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700">
+                            Appointment Form
+                        </span>
+
+                        <h2 className="mt-4 text-3xl font-bold text-slate-900">
+                            Book Your Appointment
+                        </h2>
+
+                        <p className="mt-2 text-slate-500">
+                            Fill out the form below and our medical team will contact you shortly
+                            to confirm your appointment.
+                        </p>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <form onSubmit={handleSubmit} className="space-y-6" >
+                        {/* Row 1 */}
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {/* Name */}
                             <div>
                                 <label className="mb-2 block font-medium text-slate-700">
-                                    Medical Concern
+                                    Full Name
                                 </label>
 
-                                <div className="flex rounded-xl border border-slate-300 px-4 py-3 focus-within:border-cyan-500">
-                                    <FileText className="mt-1 text-slate-400" size={18} />
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
+                                    <User className="text-slate-400" size={18} />
 
-                                    <textarea
-                                        rows={5}
-                                        placeholder="Briefly describe your symptoms or reason for the appointment..."
-                                        className="w-full resize-none bg-transparent px-3 outline-none"
+                                    <input
+                                        name="fullName"
+                                        type="text"
+                                        onChange={handleChange}
+                                        value={fromData.fullName}
+                                        placeholder="John Smith"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
                                     />
                                 </div>
                             </div>
 
-                            {/* Button */}
-                            <button
-                                type="submit"
-                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-600 py-4 text-lg font-semibold text-white transition hover:bg-cyan-700 active:scale-[0.98]"
-                            >
-                                Book Appointment
-                                <Send size={18} />
-                            </button>
-                        </form>
-                    </section>
-                </div>)
-            }
+                            {/* Email */}
+                            <div>
+                                <label className="mb-2 block font-medium text-slate-700">
+                                    Email Address
+                                </label>
+
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
+                                    <Mail className="text-slate-400" size={18} />
+
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        onChange={handleChange}
+                                        value={fromData.email}
+                                        placeholder="john@email.com"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Row 2 */}
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {/* Phone */}
+                            <div>
+                                <label className="mb-2 block font-medium text-slate-700">
+                                    Phone Number
+                                </label>
+
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
+                                    <Phone className="text-slate-400" size={18} />
+
+                                    <input
+                                        name="phone"
+                                        type="tel"
+                                        onChange={handleChange}
+                                        value={fromData.phone}
+                                        placeholder="+880 1234 567890"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Department */}
+                            <div>
+                                <label className="mb-2 block font-medium text-slate-700">
+                                    Department
+                                </label>
+
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500" >
+                                    <Stethoscope className="text-slate-400" size={18} />
+                                    <input
+                                        name="department"
+                                        onChange={handleChange}
+                                        value={fromData.department}
+                                        readOnly
+                                        type="text"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
+                                    />
+                                </div>
+                            </div>
+                            {/* doctor Name  */}
+                            <div>
+                                <label className="mb-2 block font-medium text-slate-700">
+                                    Doctor Name
+                                </label>
+
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500" >
+                                    <Stethoscope className="text-slate-400" size={18} />
+                                    <input
+                                        name="doctorName"
+                                        onChange={handleChange}
+                                        value={fromData.doctorName}
+                                        readOnly
+                                        type="text"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
+                                    />
+                                </div>
+                            </div>
+                            {/* doctor Name  */}
+                            <div>
+                                <label className="mb-2 block font-medium text-slate-700">
+                                    Language
+                                </label>
+
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500" >
+                                    <Stethoscope className="text-slate-400" size={18} />
+                                    <input
+                                        name="language"
+                                        onChange={handleChange}
+                                        value={fromData.language}
+                                        readOnly
+                                        type="text"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Row 3 */}
+                        <div className="grid gap-6 md:grid-cols-2">
+                            {/* Date */}
+                            <div>
+                                <label className="mb-2 block font-medium text-slate-700">
+                                    Appointment Date
+                                </label>
+
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
+                                    <CalendarDays className="text-slate-400" size={18} />
+
+                                    <input
+                                        name="date"
+                                        onChange={handleChange}
+                                        value={fromData.date}
+                                        type="date"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Time */}
+                            <div>
+                                <label className="mb-2 block font-medium text-slate-700">
+                                    Preferred Time
+                                </label>
+
+                                <div className="flex items-center rounded-xl border border-slate-300 px-4 focus-within:border-cyan-500">
+                                    <Clock3 className="text-slate-400" size={18} />
+
+                                    <input
+                                        name="time"
+                                        onChange={handleChange}
+                                        value={fromData.time}
+                                        type="time"
+                                        className="w-full bg-transparent px-3 py-4 outline-none"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Message */}
+                        <div>
+                            <label className="mb-2 block font-medium text-slate-700">
+                                Medical Concern
+                            </label>
+
+                            <div className="flex rounded-xl border border-slate-300 px-4 py-3 focus-within:border-cyan-500">
+                                <FileText className="mt-1 text-slate-400" size={18} />
+
+                                <textarea
+                                    name="concern"
+                                    onChange={handleChange}
+                                    value={fromData.concern}
+                                    rows={5}
+                                    placeholder="Briefly describe your symptoms or reason for the appointment..."
+                                    className="w-full resize-none bg-transparent px-3 outline-none"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Button */}
+                        <button
+                            type="submit"
+                            className="flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-600 py-4 text-lg font-semibold text-white transition hover:bg-cyan-700 active:scale-[0.98]"
+                        >
+                            Book Appointment
+                            <Send size={18} />
+                        </button>
+                    </form>
+
+
+
+
+
+
+
+
+
+                </section>
+            </div>
+
 
         </div>
     );
