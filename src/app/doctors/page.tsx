@@ -10,376 +10,377 @@ import {
     X,
 } from "lucide-react";
 import { DoctorsType } from "@/src/types/doctors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { getDoctors } from "@/src/api/doctorApi";
 
-export const doctorsall: DoctorsType[] = [
+// export const doctorsall: DoctorsType[] = [
 
-    {
+//     {
 
-        id: 1,
+//         id: 1,
 
-        name: "Dr. Sarah Johnson",
+//         name: "Dr. Sarah Johnson",
 
-        specialty: "Cardiologist",
+//         specialty: "Cardiologist",
 
-        experience: "12+ Years",
+//         experience: "12+ Years",
 
-        rating: 4.9,
+//         rating: 4.9,
 
-        reviews: 1248,
+//         reviews: 1248,
 
-        image: "/images/doctor.png",
+//         image: "/images/doctor.png",
 
-        hospital: "City Care Hospital",
+//         hospital: "City Care Hospital",
 
-        degree: "MBBS, MD (Cardiology)",
+//         degree: "MBBS, MD (Cardiology)",
 
-        patients: "15,000+",
+//         patients: "15,000+",
 
-        email: "sarah.johnson@healthcare.com",
+//         email: "sarah.johnson@healthcare.com",
 
-        phone: "+1 (555) 123-4567",
+//         phone: "+1 (555) 123-4567",
 
-        location: "New York, USA",
+//         location: "New York, USA",
 
-        consultationFee: "$80",
+//         consultationFee: "$80",
 
-        languages: ["English", "Spanish"],
+//         languages: ["English", "Spanish"],
 
-        availability: "Mon - Fri (9:00 AM - 5:00 PM)",
+//         availability: "Mon - Fri (9:00 AM - 5:00 PM)",
 
-        about:
+//         about:
 
-            "Dr. Sarah Johnson is a highly experienced cardiologist with over 12 years of clinical practice. She specializes in diagnosing and treating heart diseases using modern medical technologies. Her compassionate approach and patient-first philosophy have earned her the trust of thousands of patients.",
+//             "Dr. Sarah Johnson is a highly experienced cardiologist with over 12 years of clinical practice. She specializes in diagnosing and treating heart diseases using modern medical technologies. Her compassionate approach and patient-first philosophy have earned her the trust of thousands of patients.",
 
-        education: [
+//         education: [
 
-            "MBBS - Harvard Medical School",
+//             "MBBS - Harvard Medical School",
 
-            "MD in Cardiology - Johns Hopkins University",
+//             "MD in Cardiology - Johns Hopkins University",
 
-            "Fellowship in Interventional Cardiology",
+//             "Fellowship in Interventional Cardiology",
 
-        ],
+//         ],
 
-        specializations: [
+//         specializations: [
 
-            "Heart Disease",
+//             "Heart Disease",
 
-            "Hypertension",
+//             "Hypertension",
 
-            "Heart Failure",
+//             "Heart Failure",
 
-            "ECG & Echocardiography",
+//             "ECG & Echocardiography",
 
-            "Coronary Angiography",
+//             "Coronary Angiography",
 
-            "Preventive Cardiology",
+//             "Preventive Cardiology",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Best Cardiologist Award 2023",
+//             "Best Cardiologist Award 2023",
 
-            "Published 35+ Medical Research Papers",
+//             "Published 35+ Medical Research Papers",
 
-            "Member of American Heart Association",
+//             "Member of American Heart Association",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Monday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Monday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Tuesday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Tuesday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Wednesday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Wednesday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Thursday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Thursday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Friday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Friday", time: "9:00 AM - 5:00 PM" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-    {
+//     {
 
-        id: 2,
+//         id: 2,
 
-        name: "Dr. Michael Brown",
+//         name: "Dr. Michael Brown",
 
-        specialty: "Neurologist",
+//         specialty: "Neurologist",
 
-        experience: "10+ Years",
+//         experience: "10+ Years",
 
-        rating: 4.8,
+//         rating: 4.8,
 
-        reviews: 986,
+//         reviews: 986,
 
-        image: "/images/doctor-02.png",
+//         image: "/images/doctor-02.png",
 
-        hospital: "Neuro Care Institute",
+//         hospital: "Neuro Care Institute",
 
-        degree: "MBBS, DM (Neurology)",
+//         degree: "MBBS, DM (Neurology)",
 
-        patients: "10,500+",
+//         patients: "10,500+",
 
-        email: "michael.brown@healthcare.com",
+//         email: "michael.brown@healthcare.com",
 
-        phone: "+1 (555) 222-4567",
+//         phone: "+1 (555) 222-4567",
 
-        location: "Chicago, USA",
+//         location: "Chicago, USA",
 
-        consultationFee: "$90",
+//         consultationFee: "$90",
 
-        languages: ["English", "French"],
+//         languages: ["English", "French"],
 
-        availability: "Mon - Sat (10:00 AM - 6:00 PM)",
+//         availability: "Mon - Sat (10:00 AM - 6:00 PM)",
 
-        about:
+//         about:
 
-            "Dr. Michael Brown is an experienced neurologist specializing in brain, spine, and nervous system disorders. He provides personalized treatment plans using the latest neurological advancements.",
+//             "Dr. Michael Brown is an experienced neurologist specializing in brain, spine, and nervous system disorders. He provides personalized treatment plans using the latest neurological advancements.",
 
-        education: [
+//         education: [
 
-            "MBBS - Stanford University",
+//             "MBBS - Stanford University",
 
-            "DM in Neurology",
+//             "DM in Neurology",
 
-            "Clinical Fellowship in Stroke Medicine",
+//             "Clinical Fellowship in Stroke Medicine",
 
-        ],
+//         ],
 
-        specializations: [
+//         specializations: [
 
-            "Stroke",
+//             "Stroke",
 
-            "Epilepsy",
+//             "Epilepsy",
 
-            "Migraine",
+//             "Migraine",
 
-            "Parkinson's Disease",
+//             "Parkinson's Disease",
 
-            "Multiple Sclerosis",
+//             "Multiple Sclerosis",
 
-            "Neuro Rehabilitation",
+//             "Neuro Rehabilitation",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Neurology Excellence Award",
+//             "Neurology Excellence Award",
 
-            "Published 20+ Research Papers",
+//             "Published 20+ Research Papers",
 
-            "Member of American Academy of Neurology",
+//             "Member of American Academy of Neurology",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Monday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Monday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Tuesday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Tuesday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Wednesday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Wednesday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Thursday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Thursday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Friday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Friday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Saturday", time: "10:00 AM - 2:00 PM" },
+//             { day: "Saturday", time: "10:00 AM - 2:00 PM" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-    {
+//     {
 
-        id: 3,
+//         id: 3,
 
-        name: "Dr. Emily Wilson",
+//         name: "Dr. Emily Wilson",
 
-        specialty: "Pediatrician",
+//         specialty: "Pediatrician",
 
-        experience: "8+ Years",
+//         experience: "8+ Years",
 
-        rating: 4.9,
+//         rating: 4.9,
 
-        reviews: 1134,
+//         reviews: 1134,
 
-        image: "/images/doctor-03.png",
+//         image: "/images/doctor-03.png",
 
-        hospital: "Children's Medical Center",
+//         hospital: "Children's Medical Center",
 
-        degree: "MBBS, MD (Pediatrics)",
+//         degree: "MBBS, MD (Pediatrics)",
 
-        patients: "8,700+",
+//         patients: "8,700+",
 
-        email: "emily.wilson@healthcare.com",
+//         email: "emily.wilson@healthcare.com",
 
-        phone: "+1 (555) 333-4567",
+//         phone: "+1 (555) 333-4567",
 
-        location: "Los Angeles, USA",
+//         location: "Los Angeles, USA",
 
-        consultationFee: "$70",
+//         consultationFee: "$70",
 
-        languages: ["English"],
+//         languages: ["English"],
 
-        availability: "Sun - Thu (9:00 AM - 4:00 PM)",
+//         availability: "Sun - Thu (9:00 AM - 4:00 PM)",
 
-        about:
+//         about:
 
-            "Dr. Emily Wilson provides comprehensive healthcare for infants, children, and adolescents. She believes in family-centered care and preventive medicine.",
+//             "Dr. Emily Wilson provides comprehensive healthcare for infants, children, and adolescents. She believes in family-centered care and preventive medicine.",
 
-        education: [
+//         education: [
 
-            "MBBS - UCLA",
+//             "MBBS - UCLA",
 
-            "MD in Pediatrics",
+//             "MD in Pediatrics",
 
-            "Child Health Fellowship",
+//             "Child Health Fellowship",
 
-        ],
+//         ],
 
-        specializations: [
+//         specializations: [
 
-            "Newborn Care",
+//             "Newborn Care",
 
-            "Child Vaccination",
+//             "Child Vaccination",
 
-            "Nutrition",
+//             "Nutrition",
 
-            "Growth Monitoring",
+//             "Growth Monitoring",
 
-            "Child Development",
+//             "Child Development",
 
-            "Pediatric Emergency",
+//             "Pediatric Emergency",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Best Pediatrician Award",
+//             "Best Pediatrician Award",
 
-            "WHO Child Health Volunteer",
+//             "WHO Child Health Volunteer",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Sunday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Sunday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Monday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Monday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Tuesday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Tuesday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Wednesday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Wednesday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Thursday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Thursday", time: "9:00 AM - 4:00 PM" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-    {
+//     {
 
-        id: 4,
+//         id: 4,
 
-        name: "Dr. David Lee",
+//         name: "Dr. David Lee",
 
-        specialty: "General Physician",
+//         specialty: "General Physician",
 
-        experience: "15+ Years",
+//         experience: "15+ Years",
 
-        rating: 5.0,
+//         rating: 5.0,
 
-        reviews: 1825,
+//         reviews: 1825,
 
-        image: "/images/doctor-04.png",
+//         image: "/images/doctor-04.png",
 
-        hospital: "Health First Hospital",
+//         hospital: "Health First Hospital",
 
-        degree: "MBBS, FCPS (Medicine)",
+//         degree: "MBBS, FCPS (Medicine)",
 
-        patients: "22,000+",
+//         patients: "22,000+",
 
-        email: "david.lee@healthcare.com",
+//         email: "david.lee@healthcare.com",
 
-        phone: "+1 (555) 444-4567",
+//         phone: "+1 (555) 444-4567",
 
-        location: "Houston, USA",
+//         location: "Houston, USA",
 
-        consultationFee: "$60",
+//         consultationFee: "$60",
 
-        languages: ["English", "Chinese"],
+//         languages: ["English", "Chinese"],
 
-        availability: "Everyday (8:00 AM - 6:00 PM)",
+//         availability: "Everyday (8:00 AM - 6:00 PM)",
 
-        about:
+//         about:
 
-            "Dr. David Lee has over 15 years of experience providing primary healthcare, preventive medicine, and chronic disease management. He is known for his friendly communication and holistic approach.",
+//             "Dr. David Lee has over 15 years of experience providing primary healthcare, preventive medicine, and chronic disease management. He is known for his friendly communication and holistic approach.",
 
-        education: [
+//         education: [
 
-            "MBBS - University of Texas",
+//             "MBBS - University of Texas",
 
-            "FCPS (Medicine)",
+//             "FCPS (Medicine)",
 
-            "Internal Medicine Residency",
+//             "Internal Medicine Residency",
 
-        ],
+//         ],
 
-        specializations: [
+//         specializations: [
 
-            "Diabetes",
+//             "Diabetes",
 
-            "Hypertension",
+//             "Hypertension",
 
-            "Preventive Medicine",
+//             "Preventive Medicine",
 
-            "Routine Health Checkups",
+//             "Routine Health Checkups",
 
-            "Family Medicine",
+//             "Family Medicine",
 
-            "General Consultation",
+//             "General Consultation",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Top Physician Award",
+//             "Top Physician Award",
 
-            "Community Healthcare Excellence",
+//             "Community Healthcare Excellence",
 
-            "Medical Research Contributor",
+//             "Medical Research Contributor",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Monday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Monday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Tuesday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Tuesday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Wednesday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Wednesday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Thursday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Thursday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Friday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Friday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Saturday", time: "8:00 AM - 2:00 PM" },
+//             { day: "Saturday", time: "8:00 AM - 2:00 PM" },
 
-            { day: "Sunday", time: "Emergency Only" },
+//             { day: "Sunday", time: "Emergency Only" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-];
+// ];
 
 const specializations = [
     "Cardiologist",
@@ -394,6 +395,14 @@ export default function Doctors() {
 
     const [doctorSearch, setDoctorSearch] = useState('')
     const [special, setSpecial] = useState("")
+    const [doctorsall, setDoctorsAll] = useState<DoctorsType[]>([]);
+
+
+    useEffect(() => {
+        getDoctors()
+            .then((data) => setDoctorsAll(data))
+            .catch((error) => console.log("Failds to fetch data", error))
+    }, [])
 
 
 
@@ -405,7 +414,7 @@ export default function Doctors() {
 
 
 
-    const doctors = doctorsall.filter((doctor) => {
+    const doctors = doctorsall?.filter((doctor) => {
 
         const doctorSpecially = doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase())
 
@@ -482,9 +491,9 @@ export default function Doctors() {
                                         >
                                             All Specializations
                                         </button>
-                                        {specializations.map((spec) => (
+                                        {specializations.map((spec, index) => (
                                             <button
-                                                key={spec}
+                                                key={index}
                                                 onClick={() => setSpecial(spec)}
                                                 className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition ${special === spec
                                                     ? "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/60 dark:text-cyan-400"
@@ -516,9 +525,9 @@ export default function Doctors() {
                             </div>
                             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                                 {doctors.length > 0 ? (
-                                    doctors.map((doctor) => (
+                                    doctors.map((doctor, index) => (
                                         <div
-                                            key={doctor.id}
+                                            key={doctor.id || index}
                                             className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
                                         >
                                             <div>
@@ -608,9 +617,9 @@ export default function Doctors() {
                         </div>
                         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                             {doctors.length > 0 ? (
-                                doctors.map((doctor) => (
+                                doctors.map((doctor, index) => (
                                     <div
-                                        key={doctor.id}
+                                        key={doctor.id || index}
                                         className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
                                     >
                                         <div>
