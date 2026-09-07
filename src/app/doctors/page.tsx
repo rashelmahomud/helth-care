@@ -396,7 +396,7 @@ export default function Doctors() {
     const [doctorSearch, setDoctorSearch] = useState('')
     const [special, setSpecial] = useState("")
     const [doctorsall, setDoctorsAll] = useState<DoctorsType[]>([]);
-
+    console.log(doctorsall)
 
     useEffect(() => {
         getDoctors()
@@ -525,9 +525,9 @@ export default function Doctors() {
                             </div>
                             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                                 {doctors.length > 0 ? (
-                                    doctors.map((doctor, index) => (
+                                    doctors.map((doctor) => (
                                         <div
-                                            key={doctor.id || index}
+                                            key={doctor._id}
                                             className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
                                         >
                                             <div>
@@ -570,7 +570,7 @@ export default function Doctors() {
                                             {/* Action Buttons */}
                                             <div className="p-5 pt-0 flex gap-2">
                                                 <Link
-                                                    href={`/doctors/${doctor.id}`}
+                                                    href={`/doctors/${doctor._id}`}
                                                     className="flex-1 rounded-xl border border-cyan-600 py-2.5 text-center text-xs font-semibold text-cyan-600 transition hover:bg-cyan-50 dark:border-cyan-400 dark:text-cyan-400 dark:hover:bg-cyan-950/50"
                                                 >
                                                     Profile
@@ -619,7 +619,7 @@ export default function Doctors() {
                             {doctors.length > 0 ? (
                                 doctors.map((doctor, index) => (
                                     <div
-                                        key={doctor.id || index}
+                                        key={doctor._id || index}
                                         className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
                                     >
                                         <div>
@@ -662,7 +662,7 @@ export default function Doctors() {
                                         {/* Action Buttons */}
                                         <div className="p-5 pt-0 flex gap-2">
                                             <Link
-                                                href={`/doctors/${doctor.id}`}
+                                                href={`/doctors/${doctor._id}`}
                                                 className="flex-1 rounded-xl border border-cyan-600 py-2.5 text-center text-xs font-semibold text-cyan-600 transition hover:bg-cyan-50 dark:border-cyan-400 dark:text-cyan-400 dark:hover:bg-cyan-950/50"
                                             >
                                                 Profile

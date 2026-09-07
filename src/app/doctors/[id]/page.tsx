@@ -14,356 +14,363 @@ import {
     Users,
     ShieldCheck
 } from "lucide-react";
+// import { DoctorsType } from "@/src/types/doctors";
+import { getDoctor } from "@/src/api/doctorApi";
 import { DoctorsType } from "@/src/types/doctors";
 
 // Mock data array (kept as provided in your prompt)
-const doctors: DoctorsType[] = [
+// const doctors: DoctorsType[] = [
 
-    {
+//     {
 
-        id: 1,
-        name: "Dr. Sarah Johnson",
-        specialty: "Cardiologist",
-        experience: "12+ Years",
-        rating: 4.9,
-        reviews: 1248,
-        image: "/images/doctor.png",
-        hospital: "City Care Hospital",
-        degree: "MBBS, MD (Cardiology)",
-        patients: "15,000+",
-        email: "sarah.johnson@healthcare.com",
-        phone: "+1 (555) 123-4567",
-        location: "New York, USA",
-        consultationFee: "$80",
-        languages: ["English", "Spanish"],
-        availability: "Mon - Fri (9:00 AM - 5:00 PM)",
-        about:
-            "Dr. Sarah Johnson is a highly experienced cardiologist with over 12 years of clinical practice. She specializes in diagnosing and treating heart diseases using modern medical technologies. Her compassionate approach and patient-first philosophy have earned her the trust of thousands of patients.",
-        education: [
-            "MBBS - Harvard Medical School",
-            "MD in Cardiology - Johns Hopkins University",
-            "Fellowship in Interventional Cardiology",
-        ],
+//         id: 1,
+//         name: "Dr. Sarah Johnson",
+//         specialty: "Cardiologist",
+//         experience: "12+ Years",
+//         rating: 4.9,
+//         reviews: 1248,
+//         image: "/images/doctor.png",
+//         hospital: "City Care Hospital",
+//         degree: "MBBS, MD (Cardiology)",
+//         patients: "15,000+",
+//         email: "sarah.johnson@healthcare.com",
+//         phone: "+1 (555) 123-4567",
+//         location: "New York, USA",
+//         consultationFee: "$80",
+//         languages: ["English", "Spanish"],
+//         availability: "Mon - Fri (9:00 AM - 5:00 PM)",
+//         about:
+//             "Dr. Sarah Johnson is a highly experienced cardiologist with over 12 years of clinical practice. She specializes in diagnosing and treating heart diseases using modern medical technologies. Her compassionate approach and patient-first philosophy have earned her the trust of thousands of patients.",
+//         education: [
+//             "MBBS - Harvard Medical School",
+//             "MD in Cardiology - Johns Hopkins University",
+//             "Fellowship in Interventional Cardiology",
+//         ],
 
-        specializations: [
-            "Heart Disease",
-            "Hypertension",
-            "Heart Failure",
-            "ECG & Echocardiography",
+//         specializations: [
+//             "Heart Disease",
+//             "Hypertension",
+//             "Heart Failure",
+//             "ECG & Echocardiography",
 
-            "Coronary Angiography",
+//             "Coronary Angiography",
 
-            "Preventive Cardiology",
+//             "Preventive Cardiology",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Best Cardiologist Award 2023",
+//             "Best Cardiologist Award 2023",
 
-            "Published 35+ Medical Research Papers",
+//             "Published 35+ Medical Research Papers",
 
-            "Member of American Heart Association",
+//             "Member of American Heart Association",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Monday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Monday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Tuesday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Tuesday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Wednesday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Wednesday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Thursday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Thursday", time: "9:00 AM - 5:00 PM" },
 
-            { day: "Friday", time: "9:00 AM - 5:00 PM" },
+//             { day: "Friday", time: "9:00 AM - 5:00 PM" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-    {
+//     {
 
-        id: 2,
+//         id: 2,
 
-        name: "Dr. Michael Brown",
+//         name: "Dr. Michael Brown",
 
-        specialty: "Neurologist",
+//         specialty: "Neurologist",
 
-        experience: "10+ Years",
+//         experience: "10+ Years",
 
-        rating: 4.8,
+//         rating: 4.8,
 
-        reviews: 986,
+//         reviews: 986,
 
-        image: "/images/doctor-02.png",
+//         image: "/images/doctor-02.png",
 
-        hospital: "Neuro Care Institute",
+//         hospital: "Neuro Care Institute",
 
-        degree: "MBBS, DM (Neurology)",
+//         degree: "MBBS, DM (Neurology)",
 
-        patients: "10,500+",
+//         patients: "10,500+",
 
-        email: "michael.brown@healthcare.com",
+//         email: "michael.brown@healthcare.com",
 
-        phone: "+1 (555) 222-4567",
+//         phone: "+1 (555) 222-4567",
 
-        location: "Chicago, USA",
+//         location: "Chicago, USA",
 
-        consultationFee: "$90",
+//         consultationFee: "$90",
 
-        languages: ["English", "French"],
+//         languages: ["English", "French"],
 
-        availability: "Mon - Sat (10:00 AM - 6:00 PM)",
+//         availability: "Mon - Sat (10:00 AM - 6:00 PM)",
 
-        about:
+//         about:
 
-            "Dr. Michael Brown is an experienced neurologist specializing in brain, spine, and nervous system disorders. He provides personalized treatment plans using the latest neurological advancements.",
+//             "Dr. Michael Brown is an experienced neurologist specializing in brain, spine, and nervous system disorders. He provides personalized treatment plans using the latest neurological advancements.",
 
-        education: [
+//         education: [
 
-            "MBBS - Stanford University",
+//             "MBBS - Stanford University",
 
-            "DM in Neurology",
+//             "DM in Neurology",
 
-            "Clinical Fellowship in Stroke Medicine",
+//             "Clinical Fellowship in Stroke Medicine",
 
-        ],
+//         ],
 
-        specializations: [
+//         specializations: [
 
-            "Stroke",
+//             "Stroke",
 
-            "Epilepsy",
+//             "Epilepsy",
 
-            "Migraine",
+//             "Migraine",
 
-            "Parkinson's Disease",
+//             "Parkinson's Disease",
 
-            "Multiple Sclerosis",
+//             "Multiple Sclerosis",
 
-            "Neuro Rehabilitation",
+//             "Neuro Rehabilitation",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Neurology Excellence Award",
+//             "Neurology Excellence Award",
 
-            "Published 20+ Research Papers",
+//             "Published 20+ Research Papers",
 
-            "Member of American Academy of Neurology",
+//             "Member of American Academy of Neurology",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Monday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Monday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Tuesday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Tuesday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Wednesday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Wednesday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Thursday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Thursday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Friday", time: "10:00 AM - 6:00 PM" },
+//             { day: "Friday", time: "10:00 AM - 6:00 PM" },
 
-            { day: "Saturday", time: "10:00 AM - 2:00 PM" },
+//             { day: "Saturday", time: "10:00 AM - 2:00 PM" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-    {
+//     {
 
-        id: 3,
+//         id: 3,
 
-        name: "Dr. Emily Wilson",
+//         name: "Dr. Emily Wilson",
 
-        specialty: "Pediatrician",
+//         specialty: "Pediatrician",
 
-        experience: "8+ Years",
+//         experience: "8+ Years",
 
-        rating: 4.9,
+//         rating: 4.9,
 
-        reviews: 1134,
+//         reviews: 1134,
 
-        image: "/images/doctor-03.png",
+//         image: "/images/doctor-03.png",
 
-        hospital: "Children's Medical Center",
+//         hospital: "Children's Medical Center",
 
-        degree: "MBBS, MD (Pediatrics)",
+//         degree: "MBBS, MD (Pediatrics)",
 
-        patients: "8,700+",
+//         patients: "8,700+",
 
-        email: "emily.wilson@healthcare.com",
+//         email: "emily.wilson@healthcare.com",
 
-        phone: "+1 (555) 333-4567",
+//         phone: "+1 (555) 333-4567",
 
-        location: "Los Angeles, USA",
+//         location: "Los Angeles, USA",
 
-        consultationFee: "$70",
+//         consultationFee: "$70",
 
-        languages: ["English"],
+//         languages: ["English"],
 
-        availability: "Sun - Thu (9:00 AM - 4:00 PM)",
+//         availability: "Sun - Thu (9:00 AM - 4:00 PM)",
 
-        about:
+//         about:
 
-            "Dr. Emily Wilson provides comprehensive healthcare for infants, children, and adolescents. She believes in family-centered care and preventive medicine.",
+//             "Dr. Emily Wilson provides comprehensive healthcare for infants, children, and adolescents. She believes in family-centered care and preventive medicine.",
 
-        education: [
+//         education: [
 
-            "MBBS - UCLA",
+//             "MBBS - UCLA",
 
-            "MD in Pediatrics",
+//             "MD in Pediatrics",
 
-            "Child Health Fellowship",
+//             "Child Health Fellowship",
 
-        ],
+//         ],
 
-        specializations: [
+//         specializations: [
 
-            "Newborn Care",
+//             "Newborn Care",
 
-            "Child Vaccination",
+//             "Child Vaccination",
 
-            "Nutrition",
+//             "Nutrition",
 
-            "Growth Monitoring",
+//             "Growth Monitoring",
 
-            "Child Development",
+//             "Child Development",
 
-            "Pediatric Emergency",
+//             "Pediatric Emergency",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Best Pediatrician Award",
+//             "Best Pediatrician Award",
 
-            "WHO Child Health Volunteer",
+//             "WHO Child Health Volunteer",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Sunday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Sunday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Monday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Monday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Tuesday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Tuesday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Wednesday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Wednesday", time: "9:00 AM - 4:00 PM" },
 
-            { day: "Thursday", time: "9:00 AM - 4:00 PM" },
+//             { day: "Thursday", time: "9:00 AM - 4:00 PM" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-    {
+//     {
 
-        id: 4,
+//         id: 4,
 
-        name: "Dr. David Lee",
+//         name: "Dr. David Lee",
 
-        specialty: "General Physician",
+//         specialty: "General Physician",
 
-        experience: "15+ Years",
+//         experience: "15+ Years",
 
-        rating: 5.0,
+//         rating: 5.0,
 
-        reviews: 1825,
+//         reviews: 1825,
 
-        image: "/images/doctor-04.png",
+//         image: "/images/doctor-04.png",
 
-        hospital: "Health First Hospital",
+//         hospital: "Health First Hospital",
 
-        degree: "MBBS, FCPS (Medicine)",
+//         degree: "MBBS, FCPS (Medicine)",
 
-        patients: "22,000+",
+//         patients: "22,000+",
 
-        email: "david.lee@healthcare.com",
+//         email: "david.lee@healthcare.com",
 
-        phone: "+1 (555) 444-4567",
+//         phone: "+1 (555) 444-4567",
 
-        location: "Houston, USA",
+//         location: "Houston, USA",
 
-        consultationFee: "$60",
+//         consultationFee: "$60",
 
-        languages: ["English", "Chinese"],
+//         languages: ["English", "Chinese"],
 
-        availability: "Everyday (8:00 AM - 6:00 PM)",
+//         availability: "Everyday (8:00 AM - 6:00 PM)",
 
-        about:
+//         about:
 
-            "Dr. David Lee has over 15 years of experience providing primary healthcare, preventive medicine, and chronic disease management. He is known for his friendly communication and holistic approach.",
+//             "Dr. David Lee has over 15 years of experience providing primary healthcare, preventive medicine, and chronic disease management. He is known for his friendly communication and holistic approach.",
 
-        education: [
+//         education: [
 
-            "MBBS - University of Texas",
+//             "MBBS - University of Texas",
 
-            "FCPS (Medicine)",
+//             "FCPS (Medicine)",
 
-            "Internal Medicine Residency",
+//             "Internal Medicine Residency",
 
-        ],
+//         ],
 
-        specializations: [
+//         specializations: [
 
-            "Diabetes",
+//             "Diabetes",
 
-            "Hypertension",
+//             "Hypertension",
 
-            "Preventive Medicine",
+//             "Preventive Medicine",
 
-            "Routine Health Checkups",
+//             "Routine Health Checkups",
 
-            "Family Medicine",
+//             "Family Medicine",
 
-            "General Consultation",
+//             "General Consultation",
 
-        ],
+//         ],
 
-        achievements: [
+//         achievements: [
 
-            "Top Physician Award",
+//             "Top Physician Award",
 
-            "Community Healthcare Excellence",
+//             "Community Healthcare Excellence",
 
-            "Medical Research Contributor",
+//             "Medical Research Contributor",
 
-        ],
+//         ],
 
-        schedule: [
+//         schedule: [
 
-            { day: "Monday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Monday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Tuesday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Tuesday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Wednesday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Wednesday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Thursday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Thursday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Friday", time: "8:00 AM - 6:00 PM" },
+//             { day: "Friday", time: "8:00 AM - 6:00 PM" },
 
-            { day: "Saturday", time: "8:00 AM - 2:00 PM" },
+//             { day: "Saturday", time: "8:00 AM - 2:00 PM" },
 
-            { day: "Sunday", time: "Emergency Only" },
+//             { day: "Sunday", time: "Emergency Only" },
 
-        ],
+//         ],
 
-    },
+//     },
 
-];
+// ];
 
 export default async function DoctorProfile({ params }: { params: Promise<{ id: string }>; }) {
 
     const { id } = await params;
 
-    const doctor = doctors.find((d) => d.id.toString() == id) ?? doctors[0];
+    const doctor: DoctorsType = await getDoctor(id);
+
+
+    // const doctor = doctors.find((d) => d._id.toString() == id) ?? doctors[0];
+
+
     return (
         <main className="min-h-screen bg-[#F8FAFC] pb-24 text-slate-800 dark:bg-slate-900">
             {/* Top Navigation bar */}
@@ -431,14 +438,19 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                                 </div>
                             </div>
 
+
                             <div className="flex flex-wrap gap-3 pt-2 text-xs text-slate-600 border-t border-slate-100 mt-4">
                                 <span className="flex items-center gap-1 bg-slate-100 px-3 py-1.5 rounded-lg">
-                                    <Languages size={14} className="text-slate-500" /> {doctor.languages.join(", ")}
+                                    <Languages size={14} className="text-slate-500" />
+                                    {doctor?.languages?.join(", ") ?? "Not specified"}
+
                                 </span>
                                 <span className="flex items-center gap-1 bg-slate-100 px-3 py-1.5 rounded-lg">
                                     <Mail size={14} className="text-slate-500" /> {doctor.email}
                                 </span>
                             </div>
+
+
                         </div>
 
                         {/* Action Box / Consultation Fee */}
@@ -470,6 +482,7 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
             </div>
 
             {/* Grid Layout for Content & Schedule */}
+
             <div className="mx-auto max-w-7xl px-6 mt-8">
                 <div className="grid gap-8 lg:grid-cols-12">
 
@@ -491,7 +504,7 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                                 Clinical Specializations
                             </h3>
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                {doctor.specializations.map((spec, i) => (
+                                {doctor.specializations?.map((spec, i) => (
                                     <div key={i} className="flex items-center gap-2 bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-xs font-semibold text-slate-700">
                                         <CheckCircle size={14} className="text-cyan-600 shrink-0" />
                                         <span>{spec}</span>
@@ -507,12 +520,16 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                                 Education & Background
                             </h3>
                             <div className="space-y-3">
-                                {doctor.education.map((edu, i) => (
-                                    <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 text-sm font-medium text-slate-700">
-                                        <div className="h-2 w-2 rounded-full bg-cyan-600" />
-                                        <span>{edu}</span>
-                                    </div>
-                                ))}
+                                {
+                                    doctor.education.length ? (
+                                        doctor.education.map((edu, i) => (
+                                            <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 text-sm font-medium text-slate-700">
+                                                <div className="h-2 w-2 rounded-full bg-cyan-600" />
+                                                <span>{edu}</span>
+                                            </div>
+                                        ))
+                                    ) : "education not found"
+                                }
                             </div>
                         </div>
 
@@ -523,12 +540,16 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                                 Awards & Memberships
                             </h3>
                             <div className="space-y-3">
-                                {doctor.achievements.map((item, i) => (
-                                    <div key={i} className="flex items-center gap-3 text-sm font-medium text-slate-700 border-b border-slate-100 pb-3 last:border-0 last:pb-0">
-                                        <span className="h-6 w-6 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs">★</span>
-                                        <span>{item}</span>
-                                    </div>
-                                ))}
+                                {doctor.achievements?.length ? (
+                                    doctor.achievements.map((item, i) => (
+                                        <div key={i} className="flex items-center gap-3 text-sm font-medium text-slate-700 border-b border-slate-100 pb-3 last:border-0 last:pb-0">
+                                            <span className="h-6 w-6 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs">★</span>
+                                            <span>{item}</span>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="text-sm text-slate-500">No awards listed.</p>
+                                )}
                             </div>
                         </div>
 
@@ -547,12 +568,16 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
                             </div>
 
                             <div className="space-y-2.5">
-                                {doctor.schedule.map((item, i) => (
-                                    <div key={i} className="flex items-center justify-between text-xs py-2 border-b border-slate-50 last:border-0">
-                                        <span className="font-semibold text-slate-600 dark:text-slate-300">{item.day}</span>
-                                        <span className="font-medium text-slate-900   dark:text-slate-300">{item.time}</span>
-                                    </div>
-                                ))}
+                                {doctor?.schedule?.length ? (
+                                    doctor.schedule.map((item, i) => (
+                                        <div key={i} className="flex items-center justify-between text-xs py-2 border-b border-slate-50 last:border-0">
+                                            <span className="font-semibold text-slate-600 dark:text-slate-300">{item.day}</span>
+                                            <span className="font-medium text-slate-900 dark:text-slate-300">{item.time}</span>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="text-xs text-slate-500">Schedule not available.</p>
+                                )}
                             </div>
                         </div>
 
@@ -581,6 +606,10 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
 
                 </div>
             </div>
+
+
+
+
         </main>
     );
 }

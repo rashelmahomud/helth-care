@@ -4,7 +4,7 @@ export interface DoctorSchedule {
 }
 
 export interface DoctorsType {
-    id: number;
+    _id: string;
     name: string;
     specialty: string;
     experience: string;
