@@ -463,7 +463,7 @@ export default async function DoctorProfile({ params }: { params: Promise<{ id: 
 
                             <div className="mt-6 space-y-2">
                                 <Link
-                                    href={`/doctors/${id}/book`}
+                                    href={`/doctors/${doctor._id}/book`}
                                     className="block w-full rounded-xl bg-cyan-600 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-cyan-700 transition"
                                 >
                                     Book Appointment
