@@ -5,7 +5,7 @@ import Statistics from "../components/home/Startsictic";
 import Testimonials from "../components/home/Testimonial";
 import WhyChooseUs from "../components/home/WhyChooseUs";
 import Blogs from "./blogs/page";
-import DoctorPage from "./doctors/page";
+import Doctors from "./doctors/page";
 import Services from "./services/Services";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       <Banner />
       <Services />
       <WhyChooseUs />
-      <DoctorPage />
+      <Doctors />
       <Statistics />
       <Testimonials />
       <AppointmentCTA />

@@ -13,7 +13,7 @@ import { DoctorsType } from "@/src/types/doctors";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { getDoctors } from "@/src/api/doctorApi";
-
+import DoctorSkelaton from "@/src/components/skelaton/DoctorSkelaton";
 
 const specializations = [
     "Cardiologist",
@@ -25,57 +25,45 @@ const specializations = [
 ];
 
 export default function Doctors() {
-
-    const [doctorSearch, setDoctorSearch] = useState('')
-    const [special, setSpecial] = useState("")
+    const [doctorSearch, setDoctorSearch] = useState('');
+    const [special, setSpecial] = useState("");
     const [doctorsall, setDoctorsAll] = useState<DoctorsType[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getDoctors()
-            .then((data) => setDoctorsAll(data))
-            .catch((error) => console.log("Failds to fetch data", error))
-    }, [])
+            .then((data) => {
+                setDoctorsAll(data);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.log("Failed to fetch data", error);
+                setIsLoading(false);
+            });
+    }, []);
 
-
-
-    // filtering searcing and selected sercing
-    // const doctors = doctorsall.filter((doctor) => doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase()))
-    //================
-    // const doctors = doctorsall.filter((doctor) => !special || doctor.specialty === special)
-
-
-
+    const clearFilters = () => {
+        setDoctorSearch("");
+        setSpecial("");
+    };
 
     const doctors = doctorsall?.filter((doctor) => {
-
-        const doctorSpecially = doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase())
-
-        const doctorSelected = !special || doctor.specialty === special
-
-        return doctorSpecially && doctorSelected
-    }
-    )
-
-
+        const doctorSpecially = doctor.specialty.toLowerCase().includes(doctorSearch.toLowerCase()) || doctor.name.toLowerCase().includes(doctorSearch.toLowerCase());
+        const doctorSelected = !special || doctor.specialty === special;
+        return doctorSpecially && doctorSelected;
+    });
 
     const pathname = usePathname();
-    // Check if the current route is NOT the home page ('/')
     const isDoctorPage = pathname === '/doctors';
-
 
     return (
         <section className="bg-slate-50 py-20 dark:bg-slate-900 transition-colors min-h-screen">
             <div className="mx-auto max-w-7xl px-6">
-
-
-
-                {/* Main Content Layout: Sidebar + Grid */}
-                {
-                    isDoctorPage ? <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-
-                        {/* LEFT SIDE: Search & Filter Sidebar */}
+                {isDoctorPage ? (
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+                        {/* Sidebar Filters */}
                         <div>
-                            <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm sticky top-6">
+                            <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm sticky top-6">
                                 <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700">
                                     <div className="flex items-center gap-2 font-bold text-slate-900 dark:text-white">
                                         <Filter size={18} className="text-cyan-600" />
@@ -83,7 +71,7 @@ export default function Doctors() {
                                     </div>
                                     {(doctorSearch || special) && (
                                         <button
-                                            // onClick={clearFilters}
+                                            onClick={clearFilters}
                                             className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1"
                                         >
                                             <X size={14} /> Reset
@@ -91,7 +79,6 @@ export default function Doctors() {
                                     )}
                                 </div>
 
-                                {/* Search Input Box */}
                                 <div className="mt-6">
                                     <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                                         Search Doctor
@@ -108,7 +95,6 @@ export default function Doctors() {
                                     </div>
                                 </div>
 
-                                {/* Specialization List / Select Options */}
                                 <div className="mt-6">
                                     <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                                         Specialization
@@ -116,10 +102,7 @@ export default function Doctors() {
                                     <div className="space-y-1.5 max-h-64 overflow-y-auto pr-1">
                                         <button
                                             onClick={() => setSpecial("")}
-                                            className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition ${special === ""
-                                                ? "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/60 dark:text-cyan-400"
-                                                : "text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50"
-                                                }`}
+                                            className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition ${special === "" ? "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/60 dark:text-cyan-400" : "text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50"}`}
                                         >
                                             All Specializations
                                         </button>
@@ -127,10 +110,7 @@ export default function Doctors() {
                                             <button
                                                 key={index}
                                                 onClick={() => setSpecial(spec)}
-                                                className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition ${special === spec
-                                                    ? "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/60 dark:text-cyan-400"
-                                                    : "text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50"
-                                                    }`}
+                                                className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition ${special === spec ? "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/60 dark:text-cyan-400" : "text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50"}`}
                                             >
                                                 {spec}
                                             </button>
@@ -138,12 +118,10 @@ export default function Doctors() {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
-                        {/* RIGHT SIDE: Doctors Grid List */}
+                        {/* Doctors Grid */}
                         <div className="lg:col-span-3">
-                            {/* Header Title Section */}
                             <div className="mb-12 text-center lg:text-left">
                                 <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700 dark:bg-cyan-950 dark:text-cyan-300">
                                     Meet Our Doctors
@@ -155,176 +133,86 @@ export default function Doctors() {
                                     Find and book appointments with top-rated medical professionals.
                                 </p>
                             </div>
-                            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                                {doctors.length > 0 ? (
-                                    doctors.map((doctor) => (
-                                        <div
-                                            key={doctor._id}
-                                            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
-                                        >
-                                            <div>
-                                                {/* Image Container */}
-                                                <div className="relative h-64 overflow-hidden bg-slate-100 dark:bg-slate-900">
-                                                    <Image
-                                                        src={doctor.image}
-                                                        alt={doctor.name}
-                                                        fill
-                                                        className="object-cover transition duration-500 group-hover:scale-105"
-                                                    />
-                                                    <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-1 shadow-md dark:bg-slate-900/90">
-                                                        <Star size={14} className="fill-yellow-400 text-yellow-400" />
-                                                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
-                                                            {doctor.rating}
-                                                        </span>
-                                                    </div>
-                                                </div>
 
-                                                {/* Content Details */}
-                                                <div className="p-5">
-                                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white truncate">
-                                                        {doctor.name}
-                                                    </h3>
-
-                                                    <div className="mt-2 flex items-center gap-1.5 text-cyan-600 dark:text-cyan-400">
-                                                        <Stethoscope size={16} />
-                                                        <span className="font-medium text-xs">
-                                                            {doctor.specialty}
-                                                        </span>
-                                                    </div>
-
-                                                    <div className="mt-1.5 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-                                                        <CalendarDays size={16} />
-                                                        <span className="text-xs">{doctor.experience} experience</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Action Buttons */}
-                                            <div className="p-5 pt-0 flex gap-2">
-                                                <Link
-                                                    href={`/doctors/${doctor._id}`}
-                                                    className="flex-1 rounded-xl border border-cyan-600 py-2.5 text-center text-xs font-semibold text-cyan-600 transition hover:bg-cyan-50 dark:border-cyan-400 dark:text-cyan-400 dark:hover:bg-cyan-950/50"
-                                                >
-                                                    Profile
-                                                </Link>
-
-                                                <Link
-                                                    href="/appointment"
-                                                    className="flex-1 rounded-xl bg-cyan-600 py-2.5 text-center text-xs font-semibold text-white transition hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600"
-                                                >
-                                                    Book
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <div className="col-span-full py-16 text-center bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700">
-                                        <p className="text-slate-500 dark:text-slate-400">
-                                            No doctors found matching your filters.
-                                        </p>
-                                        <button
-                                            // onClick={clearFilters}
-                                            className="mt-3 text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
-                                        >
-                                            Clear all filters
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                    </div> : <div className="lg:col-span-3">
-                        {/* Header Title Section */}
-                        <div className="mb-12 text-center">
-                            {/* <div className="mb-12 text-center lg:text-left"> */}
-                            <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700 dark:bg-cyan-950 dark:text-cyan-300">
-                                Meet Our Doctors
-                            </span>
-                            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
-                                Experienced Specialists
-                            </h2>
-                            <p className="mt-2 text-slate-600 dark:text-slate-400">
-                                Find and book appointments with top-rated medical professionals.
-                            </p>
-                        </div>
-                        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                            {doctors.length > 0 ? (
-                                doctors.map((doctor, index) => (
-                                    <div
-                                        key={doctor._id || index}
-                                        className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
-                                    >
-                                        <div>
-                                            {/* Image Container */}
-                                            <div className="relative h-64 overflow-hidden bg-slate-100 dark:bg-slate-900">
-                                                <Image
-                                                    src={doctor.image}
-                                                    alt={doctor.name}
-                                                    fill
-                                                    className="object-cover transition duration-500 group-hover:scale-105"
-                                                />
-                                                <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-1 shadow-md dark:bg-slate-900/90">
-                                                    <Star size={14} className="fill-yellow-400 text-yellow-400" />
-                                                    <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
-                                                        {doctor.rating}
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            {/* Content Details */}
-                                            <div className="p-5">
-                                                <h3 className="text-lg font-bold text-slate-900 dark:text-white truncate">
-                                                    {doctor.name}
-                                                </h3>
-
-                                                <div className="mt-2 flex items-center gap-1.5 text-cyan-600 dark:text-cyan-400">
-                                                    <Stethoscope size={16} />
-                                                    <span className="font-medium text-xs">
-                                                        {doctor.specialty}
-                                                    </span>
-                                                </div>
-
-                                                <div className="mt-1.5 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-                                                    <CalendarDays size={16} />
-                                                    <span className="text-xs">{doctor.experience} experience</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Action Buttons */}
-                                        <div className="p-5 pt-0 flex gap-2">
-                                            <Link
-                                                href={`/doctors/${doctor._id}`}
-                                                className="flex-1 rounded-xl border border-cyan-600 py-2.5 text-center text-xs font-semibold text-cyan-600 transition hover:bg-cyan-50 dark:border-cyan-400 dark:text-cyan-400 dark:hover:bg-cyan-950/50"
-                                            >
-                                                Profile
-                                            </Link>
-
-                                            <Link
-                                                href="/appointment"
-                                                className="flex-1 rounded-xl bg-cyan-600 py-2.5 text-center text-xs font-semibold text-white transition hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600"
-                                            >
-                                                Book
-                                            </Link>
-                                        </div>
-                                    </div>
-                                ))
+                            {isLoading ? (
+                                <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                                    {[...Array(6)].map((_, i) => <DoctorSkelaton key={i} />)}
+                                </div>
                             ) : (
-                                <div className="col-span-full py-16 text-center bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700">
-                                    <p className="text-slate-500 dark:text-slate-400">
-                                        No doctors found matching your filters.
-                                    </p>
-                                    <button
-                                        // onClick={clearFilters}
-                                        className="mt-3 text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
-                                    >
-                                        Clear all filters
-                                    </button>
+                                <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                                    {doctors.length > 0 ? (
+                                        doctors.map((doctor) => (
+                                            <div
+                                                key={doctor._id}
+                                                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
+                                            >
+                                                <div>
+                                                    <div className="relative h-64 overflow-hidden bg-slate-100 dark:bg-slate-900">
+                                                        <Image
+                                                            src={doctor.image}
+                                                            alt={doctor.name}
+                                                            fill
+                                                            className="object-cover transition duration-500 group-hover:scale-105"
+                                                        />
+                                                        <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-1 shadow-md dark:bg-slate-900/90">
+                                                            <Star size={14} className="fill-yellow-400 text-yellow-400" />
+                                                            <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                                                {doctor.rating}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="p-5">
+                                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white truncate">
+                                                            {doctor.name}
+                                                        </h3>
+                                                        <div className="mt-2 flex items-center gap-1.5 text-cyan-600 dark:text-cyan-400">
+                                                            <Stethoscope size={16} />
+                                                            <span className="font-medium text-xs">{doctor.specialty}</span>
+                                                        </div>
+                                                        <div className="mt-1.5 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                                                            <CalendarDays size={16} />
+                                                            <span className="text-xs">{doctor.experience} experience</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="p-5 pt-0 flex gap-2">
+                                                    <Link
+                                                        href={`/doctors/${doctor._id}`}
+                                                        className="flex-1 rounded-xl border border-cyan-600 py-2.5 text-center text-xs font-semibold text-cyan-600 transition hover:bg-cyan-50 dark:border-cyan-400 dark:text-cyan-400 dark:hover:bg-cyan-950/50"
+                                                    >
+                                                        Profile
+                                                    </Link>
+                                                    <Link
+                                                        href="/appointment"
+                                                        className="flex-1 rounded-xl bg-cyan-600 py-2.5 text-center text-xs font-semibold text-white transition hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600"
+                                                    >
+                                                        Book
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="col-span-full py-16 text-center bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700">
+                                            <p className="text-slate-500 dark:text-slate-400">
+                                                No doctors found matching your filters.
+                                            </p>
+                                            <button
+                                                onClick={clearFilters}
+                                                className="mt-3 text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
+                                            >
+                                                Clear all filters
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>
                     </div>
-                }
+                ) : (
+                    <div className="w-full">
+                        {/* Fallback view if needed */}
+                    </div>
+                )}
             </div>
         </section>
     );
