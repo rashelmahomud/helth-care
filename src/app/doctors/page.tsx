@@ -209,8 +209,97 @@ export default function Doctors() {
                         </div>
                     </div>
                 ) : (
-                    <div className="w-full">
-                        {/* Fallback view if needed */}
+                    <div>
+                        <div className="mb-12 text-center">
+                            <span className="rounded-full bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-700 dark:bg-cyan-950 dark:text-cyan-300">
+                                Meet Our Doctors
+                            </span>
+                            <h2 className="mt-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+                                Experienced Specialists
+                            </h2>
+                            <p className="mt-2 text-slate-600 dark:text-slate-400">
+                                Find and book appointments with top-rated medical professionals.
+                            </p>
+                        </div>
+                        <div className="">
+                            {/* Doctors Grid */}
+                            <div className="lg:col-span-3">
+
+
+                                {isLoading ? (
+                                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                                        {[...Array(6)].map((_, i) => <DoctorSkelaton key={i} />)}
+                                    </div>
+                                ) : (
+                                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                                        {doctors.length > 0 ? (
+                                            doctors.map((doctor) => (
+                                                <div
+                                                    key={doctor._id}
+                                                    className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-slate-800 dark:border-slate-700 flex flex-col justify-between"
+                                                >
+                                                    <div>
+                                                        <div className="relative h-64 overflow-hidden bg-slate-100 dark:bg-slate-900">
+                                                            <Image
+                                                                src={doctor.image}
+                                                                alt={doctor.name}
+                                                                fill
+                                                                className="object-cover transition duration-500 group-hover:scale-105"
+                                                            />
+                                                            <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-1 shadow-md dark:bg-slate-900/90">
+                                                                <Star size={14} className="fill-yellow-400 text-yellow-400" />
+                                                                <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+                                                                    {doctor.rating}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white truncate">
+                                                                {doctor.name}
+                                                            </h3>
+                                                            <div className="mt-2 flex items-center gap-1.5 text-cyan-600 dark:text-cyan-400">
+                                                                <Stethoscope size={16} />
+                                                                <span className="font-medium text-xs">{doctor.specialty}</span>
+                                                            </div>
+                                                            <div className="mt-1.5 flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                                                                <CalendarDays size={16} />
+                                                                <span className="text-xs">{doctor.experience} experience</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="p-5 pt-0 flex gap-2">
+                                                        <Link
+                                                            href={`/doctors/${doctor._id}`}
+                                                            className="flex-1 rounded-xl border border-cyan-600 py-2.5 text-center text-xs font-semibold text-cyan-600 transition hover:bg-cyan-50 dark:border-cyan-400 dark:text-cyan-400 dark:hover:bg-cyan-950/50"
+                                                        >
+                                                            Profile
+                                                        </Link>
+                                                        <Link
+                                                            href="/appointment"
+                                                            className="flex-1 rounded-xl bg-cyan-600 py-2.5 text-center text-xs font-semibold text-white transition hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600"
+                                                        >
+                                                            Book
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="col-span-full py-16 text-center bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700">
+                                                <p className="text-slate-500 dark:text-slate-400">
+                                                    No doctors found matching your filters.
+                                                </p>
+                                                <button
+                                                    onClick={clearFilters}
+                                                    className="mt-3 text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
+                                                >
+                                                    Clear all filters
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
