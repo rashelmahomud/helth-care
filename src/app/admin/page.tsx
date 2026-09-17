@@ -1,4 +1,3 @@
-"use client";
 
 import Link from "next/link";
 import {
@@ -6,54 +5,12 @@ import {
     CalendarDays,
     ChevronRight,
     CreditCard,
-    LayoutDashboard,
     Menu,
-    Pill,
-    Settings,
     Stethoscope,
     UserRound,
     Users,
-    X,
 } from "lucide-react";
-import { useState } from "react";
 
-const menuItems = [
-    {
-        name: "Dashboard",
-        href: "/admin",
-        icon: LayoutDashboard,
-    },
-    {
-        name: "Doctors",
-        href: "/admin/doctors",
-        icon: Stethoscope,
-    },
-    {
-        name: "Patients",
-        href: "/admin/patients",
-        icon: Users,
-    },
-    {
-        name: "Appointments",
-        href: "/admin/appointments",
-        icon: CalendarDays,
-    },
-    {
-        name: "Medicines",
-        href: "/admin/medicines",
-        icon: Pill,
-    },
-    {
-        name: "Payments",
-        href: "/admin/payments",
-        icon: CreditCard,
-    },
-    {
-        name: "Settings",
-        href: "/admin/settings",
-        icon: Settings,
-    },
-];
 
 const appointments = [
     {
@@ -87,131 +44,14 @@ const appointments = [
 ];
 
 export default function AdminPage() {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white">
 
-            {/* Mobile overlay */}
-            {sidebarOpen && (
-                <div
-                    onClick={() => setSidebarOpen(false)}
-                    className="fixed inset-0 z-40 bg-black/40 lg:hidden"
-                />
-            )}
 
-            {/* Sidebar */}
-            <aside
-                className={`
-                    fixed left-0 top-0 z-50 h-screen w-64
-                    border-r border-slate-200 bg-white
-                    transition-transform duration-300
-                    dark:border-slate-800 dark:bg-slate-900
-                    lg:translate-x-0
-                    ${sidebarOpen
-                        ? "translate-x-0"
-                        : "-translate-x-full"
-                    }
-                `}
-            >
-
-                {/* Logo */}
-                <div className="flex h-20 items-center justify-between border-b border-slate-100 px-5 dark:border-slate-800">
-
-                    <Link
-                        href="/"
-                        className="flex items-center gap-3"
-                    >
-
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-600">
-                            <Activity className="text-white" size={21} />
-                        </div>
-
-                        <div>
-                            <h1 className="font-bold">
-                                MediCare
-                            </h1>
-
-                            <p className="text-xs text-slate-500">
-                                Admin Panel
-                            </p>
-                        </div>
-
-                    </Link>
-
-                    <button
-                        onClick={() => setSidebarOpen(false)}
-                        className="lg:hidden"
-                    >
-                        <X size={20} />
-                    </button>
-
-                </div>
-
-                {/* Navigation */}
-                <nav className="space-y-1 p-4">
-
-                    <p className="mb-4 px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                        Management
-                    </p>
-
-                    {menuItems.map((item) => {
-                        const Icon = item.icon;
-
-                        return (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                onClick={() => setSidebarOpen(false)}
-                                className={`
-                                    flex items-center gap-3
-                                    rounded-xl px-3 py-3
-                                    text-sm font-medium
-                                    transition
-                                    hover:bg-cyan-50
-                                    hover:text-cyan-600
-                                    dark:hover:bg-slate-800
-                                    ${item.name === "Dashboard"
-                                        ? "bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40"
-                                        : "text-slate-600 dark:text-slate-400"
-                                    }
-                                `}
-                            >
-                                <Icon size={19} />
-                                {item.name}
-                            </Link>
-                        );
-                    })}
-
-                </nav>
-
-                {/* Admin profile */}
-                <div className="absolute bottom-0 w-full border-t border-slate-100 p-4 dark:border-slate-800">
-
-                    <div className="flex items-center gap-3">
-
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 text-sm font-bold text-white">
-                            A
-                        </div>
-
-                        <div>
-                            <p className="text-sm font-semibold">
-                                Admin
-                            </p>
-
-                            <p className="text-xs text-slate-500">
-                                Administrator
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </aside>
 
             {/* Main */}
-            <div className="lg:pl-64">
+            <div className="">
 
                 {/* Header */}
                 <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-slate-200 bg-white/90 px-5 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/90 sm:px-8">
@@ -219,7 +59,6 @@ export default function AdminPage() {
                     <div className="flex items-center gap-3">
 
                         <button
-                            onClick={() => setSidebarOpen(true)}
                             className="rounded-xl p-2 hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
                         >
                             <Menu />
