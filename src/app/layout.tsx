@@ -6,7 +6,7 @@ import Footer from "../shared/Footer";
 import { AuthProvider } from "../providers/AuthProvider";
 import AuthGuard from "../components/auth/AuthGuard";
 import ThemeProvider from "../providers/ThemeProvider";
-
+import { Toaster } from 'react-hot-toast';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,7 +39,7 @@ export default function RootLayout({
             <AuthGuard>
 
               {children}
-
+              <Toaster />
             </AuthGuard>
           </AuthProvider>
         </ThemeProvider>
