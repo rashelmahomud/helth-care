@@ -1,5 +1,5 @@
 'use client'
-import { Activity, CalendarDays, CreditCard, FileText, Home, LogOut, MessageCircle, Pill, Settings, Stethoscope, User } from "lucide-react";
+import { Activity, CalendarDays, CreditCard, FileText, Home, LogOut, Menu, MessageCircle, Pill, Settings, Stethoscope, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -52,12 +52,53 @@ const DeshbordLayout = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
 
     return (
-        <div className="grid grid-cols-4 gap-10 p-2 dark:bg-slate-900">
+        <div className="dark:bg-slate-900 lg:grid lg:grid-cols-4 lg:gap-10 lg:p-2">
 
-            <nav className="flex-1 space-y-1 overflow-y-auto px-4">
-                <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Main Menu
-                </p>
+            {/* Mobile top bar */}
+            <div className="flex items-center justify-between border-b border-slate-200 p-3 dark:border-slate-800 lg:hidden">
+                <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    Dashboard
+                </span>
+                <button
+                    type="button"
+                    onClick={() => setSidebarOpen(true)}
+                    aria-label="Open menu"
+                    className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+                >
+                    <Menu size={22} />
+                </button>
+            </div>
+
+            {/* Mobile backdrop */}
+            {sidebarOpen && (
+                <div
+                    onClick={() => setSidebarOpen(false)}
+                    className="fixed inset-0 z-40 bg-black/40 lg:hidden"
+                />
+            )}
+
+            <nav
+                className={`
+                    fixed inset-y-0 left-0 z-50 w-72 space-y-1 overflow-y-auto bg-white px-4 py-4
+                    transition-transform duration-200 ease-in-out
+                    dark:bg-slate-900
+                    lg:static lg:z-auto lg:w-auto lg:translate-x-0 lg:bg-transparent lg:px-4 lg:py-0
+                    ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+                `}
+            >
+                <div className="mb-3 flex items-center justify-between px-3">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        Main Menu
+                    </p>
+                    <button
+                        type="button"
+                        onClick={() => setSidebarOpen(false)}
+                        aria-label="Close menu"
+                        className="rounded-lg p-1 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
+                    >
+                        <X size={18} />
+                    </button>
+                </div>
 
                 <div className="mb-6 flex items-center gap-3 rounded-2xl border border-cyan-100 bg-cyan-50 p-4 shadow-sm dark:border-cyan-900/40 dark:bg-cyan-950/30">
 
@@ -129,6 +170,7 @@ const DeshbordLayout = ({ children }: { children: React.ReactNode }) => {
 
                 <Link
                     href="/profile"
+                    onClick={() => setSidebarOpen(false)}
                     className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 transition hover:bg-cyan-50 hover:text-cyan-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-cyan-400"
                 >
                     <User size={19} />
@@ -137,6 +179,7 @@ const DeshbordLayout = ({ children }: { children: React.ReactNode }) => {
 
                 <Link
                     href="/settings"
+                    onClick={() => setSidebarOpen(false)}
                     className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 transition-colors duration-150 hover:bg-cyan-50 hover:text-cyan-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-cyan-400"
                 >
                     <Settings size={19} />
@@ -159,7 +202,7 @@ const DeshbordLayout = ({ children }: { children: React.ReactNode }) => {
 
             {/* main items here  */}
 
-            <div className="col-span-3 p-4">
+            <div className="col-span-1 p-4 lg:col-span-3">
                 {children}
             </div>
 
@@ -168,3 +211,6 @@ const DeshbordLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default DeshbordLayout;
+
+
+//monin page this is
