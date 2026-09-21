@@ -16,8 +16,8 @@ const menuItems = [
         icon: CalendarDays,
     },
     {
-        name: "Doctor Add",
-        href: "/admin/addDoctor",
+        name: "Total Doctors",
+        href: "/admin/totalDoctors",
         icon: Stethoscope,
     },
     {
