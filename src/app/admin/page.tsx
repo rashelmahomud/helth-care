@@ -9,11 +9,14 @@ import {
     UserRound,
     Users,
 } from "lucide-react";
+import { getDoctors } from "@/src/api/doctorApi";
 
 
 
 
-export default function AdminPage() {
+export default async function AdminPage() {
+
+    const totalDoctors = await getDoctors();
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white">
@@ -82,70 +85,60 @@ export default function AdminPage() {
                         </h1>
 
                         <p className="mt-2 text-slate-500">
-                            Here's what's happening in your hospital today.
+                            Here s what s happening in your hospital today.
                         </p>
 
                     </div>
 
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40">
+                                <Users size={22} />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Doctors</h4>
+                                <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                                    {totalDoctors.length}
+                                </span>
+                            </div>
+                        </div>
 
-                        <StatCard
-                            title="Total Patients"
-                            value="1,248"
-                            icon={<Users />}
-                            change="+12%"
-                        />
+                        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40">
+                                <Users size={22} />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Doctors</h4>
+                                <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                                    {totalDoctors.length}
+                                </span>
+                            </div>
+                        </div>
 
-                        <StatCard
-                            title="Total Doctors"
-                            value="48"
-                            icon={<Stethoscope />}
-                            change="+4%"
-                        />
+                        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40">
+                                <Users size={22} />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Doctors</h4>
+                                <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                                    {totalDoctors.length}
+                                </span>
+                            </div>
+                        </div>
 
-                        <StatCard
-                            title="Appointments"
-                            value="326"
-                            icon={<CalendarDays />}
-                            change="+18%"
-                        />
-
-                        <StatCard
-                            title="Total Revenue"
-                            value="$24,850"
-                            icon={<CreditCard />}
-                            change="+21%"
-                        />
-
+                        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40">
+                                <Users size={22} />
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Doctors</h4>
+                                <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                                    {totalDoctors.length}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-
-                    {/* Bottom cards */}
-                    <div className="mt-6 grid gap-6 md:grid-cols-3">
-
-                        <InfoCard
-                            title="Pending Appointments"
-                            value="18"
-                            description="Need confirmation"
-                            icon={<CalendarDays />}
-                        />
-
-                        <InfoCard
-                            title="Patients Admitted"
-                            value="32"
-                            description="Currently in hospital"
-                            icon={<Activity />}
-                        />
-
-                        <InfoCard
-                            title="Pending Payments"
-                            value="$4,820"
-                            description="Outstanding amount"
-                            icon={<CreditCard />}
-                        />
-
-                    </div>
-
                 </main>
 
             </div>
@@ -154,83 +147,3 @@ export default function AdminPage() {
     );
 }
 
-
-/* =========================
-   STAT CARD
-========================= */
-
-function StatCard({
-    title,
-    value,
-    icon,
-    change,
-}: {
-    title: string;
-    value: string;
-    icon: React.ReactNode;
-    change: string;
-}) {
-    return (
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-
-            <div className="flex items-center justify-between">
-
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40">
-                    {icon}
-                </div>
-
-                <span className="text-xs font-semibold text-green-600">
-                    {change}
-                </span>
-
-            </div>
-
-            <p className="mt-5 text-sm text-slate-500">
-                {title}
-            </p>
-
-            <h3 className="mt-1 text-2xl font-bold">
-                {value}
-            </h3>
-
-        </div>
-    );
-}
-
-function InfoCard({
-    title,
-    value,
-    description,
-    icon,
-}: {
-    title: string;
-    value: string;
-    description: string;
-    icon: React.ReactNode;
-}) {
-    return (
-        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40">
-                {icon}
-            </div>
-
-            <div>
-
-                <p className="text-sm text-slate-500">
-                    {title}
-                </p>
-
-                <p className="mt-1 text-xl font-bold">
-                    {value}
-                </p>
-
-                <p className="text-xs text-slate-400">
-                    {description}
-                </p>
-
-            </div>
-
-        </div>
-    );
-}
