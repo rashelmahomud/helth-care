@@ -1,11 +1,11 @@
 import { getDoctors } from "@/src/api/doctorApi";
 import DeleteDoctorButton from "@/src/components/DeleteDoctorButton";
+import EditDoctorForm from "@/src/components/EditDoctorForm";
 import { DoctorsType } from "@/src/types/doctors";
 import Image from "next/image";
 
 const TotalDoctors = async () => {
     const totalDoctors: DoctorsType[] = await getDoctors();
-
     return (
         <div className="min-h-screen bg-[#F2F4F2] px-6 py-14 md:px-12">
             <div className="mx-auto max-w-6xl">
@@ -39,6 +39,8 @@ const TotalDoctors = async () => {
                                     {doctor.name}
                                 </h2>
                                 <DeleteDoctorButton id={doctor._id} />
+                                <EditDoctorForm doctor={doctor} />
+
                             </div>
                         </div>
                     ))}
