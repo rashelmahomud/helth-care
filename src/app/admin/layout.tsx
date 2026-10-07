@@ -42,6 +42,7 @@ const menuItems = [
     }
 
 ];
+export const dynamic = "force-dynamic";
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);

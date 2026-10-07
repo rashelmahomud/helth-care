@@ -3,7 +3,7 @@ import DeleteDoctorButton from "@/src/components/DeleteDoctorButton";
 import EditDoctorForm from "@/src/components/EditDoctorForm";
 import { DoctorsType } from "@/src/types/doctors";
 import Image from "next/image";
-
+export const dynamic = "force-dynamic";
 const TotalDoctors = async () => {
     const totalDoctors: DoctorsType[] = await getDoctors();
     return (
