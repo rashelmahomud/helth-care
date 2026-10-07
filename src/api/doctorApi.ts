@@ -1,34 +1,57 @@
+import axios from "axios";
 import api from "../lib/axios";
 import { DoctorsType } from "../types/doctors";
 
-export const getDoctors = async () => {
-    const res = await api.get("/doctors");
-    return res.data;
+
+const getErrorMessage = (error: unknown, fallback: string) => {
+    if (axios.isAxiosError<{ message?: string }>(error)) {
+        return error.response?.data?.message ?? error.message ?? fallback;
+    }
+    if (error instanceof Error) return error.message;
+    return fallback;
 };
 
 
-export const getDoctor = async (id: string) => {
-    const res = await api.get(`/doctors/${id}`);
-    return res.data
+export const getDoctors = async (): Promise<DoctorsType[]> => {
+    try {
+        const res = await api.get<DoctorsType[]>("/doctors");
+        return res.data;
+    } catch (error: unknown) {
+        throw new Error(getErrorMessage(error, "Data Fatching faild"))
+    }
+
+};
+
+
+export const getDoctor = async (id: string): Promise<DoctorsType> => {
+    try {
+        const res = await api.get<DoctorsType>(`/doctors/${id}`);
+        return res.data
+    } catch (error: unknown) {
+        throw new Error(getErrorMessage(error, "Data Fatching faild"))
+    }
 }
+
+
 
 
 export const deleteDoctor = async (id: string) => {
     try {
         const res = await api.delete(`/doctors/${id}`);
         return res.data;
-    } catch (error: any) {
-
-        throw new Error("Failed to delete doctor", error);
+    } catch (error: unknown) {
+        throw new Error(getErrorMessage(error, "Data delete faild"))
     }
 };
 
-export const updatDoctor = async (id: string, data: Partial<DoctorsType>) => {
+
+
+export const updatDoctor = async (id: string, data: Partial<DoctorsType>): Promise<DoctorsType> => {
     try {
         const res = await api.patch(`/doctors/${id}`, data)
         return res.data
-    } catch (error: any) {
-        throw new Error("Failed to update", error)
+    } catch (error: unknown) {
+        throw new Error(getErrorMessage(error, "Doctor Data updateing faild"))
     }
 }
 

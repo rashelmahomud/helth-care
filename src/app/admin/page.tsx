@@ -1,11 +1,8 @@
 
 import Link from "next/link";
 import {
-    Activity,
-    CalendarDays,
-    CreditCard,
+
     Menu,
-    Stethoscope,
     UserRound,
     Users,
 } from "lucide-react";
