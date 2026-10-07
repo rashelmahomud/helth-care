@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 
 const TotalDoctors = async () => {
     let totalDoctors: DoctorsType[] = [];
+
     let error = "";
     try {
         totalDoctors = await getDoctors();
