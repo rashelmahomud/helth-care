@@ -12,7 +12,7 @@ const TotalDoctors = async () => {
         <div className="min-h-screen bg-[#F2F4F2] px-6 py-14 md:px-12">
             <div className="mx-auto max-w-6xl">
                 <div className="mb-10 border-b border-[#16302B]/15 pb-6">
-                    <h1 className="font-serif text-3xl text-[#16302B]">Doctors on staff</h1>
+                    <h1 className="font-serif text-3xl text-[#16302B]">Doctors on staf</h1>
                     <p className="mt-1 text-sm text-[#16302B]/60">
                         {totalDoctors.length} physicians currently registered
                     </p>
