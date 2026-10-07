@@ -38,7 +38,7 @@ export default async function AdminPage() {
                             </h2>
 
                             <p className="text-xs text-slate-500">
-                                Manage your healthcare system
+                                Manage your healthcare systems
                             </p>
                         </div>
 
