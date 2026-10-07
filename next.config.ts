@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "hips.hearstapps.com"
+      },
+      {
+        protocol: "https",
+        hostname: "scontent.fcgp44-1.fna.fbcdn.net"
       }
     ]
   }
