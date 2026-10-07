@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { getDoctors } from "@/src/api/doctorApi";
 
-
+export const dynamic = "force-dynamic";
 
 
 export default async function AdminPage() {
