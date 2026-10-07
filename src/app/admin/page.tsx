@@ -7,13 +7,20 @@ import {
     Users,
 } from "lucide-react";
 import { getDoctors } from "@/src/api/doctorApi";
+import { DoctorsType } from "@/src/types/doctors";
 
 export const dynamic = "force-dynamic";
 
 
 export default async function AdminPage() {
 
-    const totalDoctors = await getDoctors();
+
+    let totalDoctors: DoctorsType[] = [];
+    try {
+        totalDoctors = await getDoctors();
+    } catch {
+        // page still renders, count shows 0
+    }
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white">
@@ -82,7 +89,7 @@ export default async function AdminPage() {
                         </h1>
 
                         <p className="mt-2 text-slate-500">
-                            Here s what s happening in your hospital today.
+                            Here&apos;s what&apos;s happening in your hospital today.
                         </p>
 
                     </div>
